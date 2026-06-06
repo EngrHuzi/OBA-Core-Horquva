@@ -1,0 +1,157 @@
+{
+  "company": "Sunrise Care",
+  "employees": 120,
+  "agents": [
+    {
+      "id": "agent_001",
+      "name": "Lead Scoring Agent",
+      "owner": "Robert",
+      "backup_owner": null,
+      "criticality": "critical",
+      "department": "Sales",
+      "documented": false
+    },
+    {
+      "id": "agent_002",
+      "name": "Lead Qualification Agent",
+      "owner": "Robert",
+      "backup_owner": null,
+      "criticality": "critical",
+      "department": "Sales",
+      "documented": false
+    },
+    {
+      "id": "agent_003",
+      "name": "Scheduling Agent",
+      "owner": "Robert",
+      "backup_owner": null,
+      "criticality": "high",
+      "department": "Operations",
+      "documented": false
+    },
+    {
+      "id": "agent_004",
+      "name": "CRM Sync Agent",
+      "owner": "Robert",
+      "backup_owner": null,
+      "criticality": "critical",
+      "department": "Sales",
+      "documented": true
+    },
+    {
+      "id": "agent_005",
+      "name": "Billing Agent",
+      "owner": "Robert",
+      "backup_owner": null,
+      "criticality": "critical",
+      "department": "Finance",
+      "documented": false
+    },
+    {
+      "id": "agent_006",
+      "name": "Support Ticket Agent",
+      "owner": "Sarah",
+      "backup_owner": "Mike",
+      "criticality": "high",
+      "department": "Support",
+      "documented": true
+    },
+    {
+      "id": "agent_007",
+      "name": "Customer Feedback Agent",
+      "owner": "Sarah",
+      "backup_owner": "Mike",
+      "criticality": "medium",
+      "department": "Support",
+      "documented": true
+    },
+    {
+      "id": "agent_008",
+      "name": "Onboarding Agent",
+      "owner": "Lisa",
+      "backup_owner": "Sarah",
+      "criticality": "high",
+      "department": "HR",
+      "documented": true
+    },
+    {
+      "id": "agent_009",
+      "name": "Payroll Agent",
+      "owner": "Lisa",
+      "backup_owner": null,
+      "criticality": "critical",
+      "department": "Finance",
+      "documented": false
+    },
+    {
+      "id": "agent_010",
+      "name": "Compliance Monitor Agent",
+      "owner": "Lisa",
+      "backup_owner": "Sarah",
+      "criticality": "high",
+      "department": "Legal",
+      "documented": true
+    },
+    {
+      "id": "agent_011",
+      "name": "Email Campaign Agent",
+      "owner": "Mike",
+      "backup_owner": "Lisa",
+      "criticality": "medium",
+      "department": "Marketing",
+      "documented": true
+    },
+    {
+      "id": "agent_012",
+      "name": "Report Generator Agent",
+      "owner": "Mike",
+      "backup_owner": null,
+      "criticality": "medium",
+      "department": "Analytics",
+      "documented": false
+    },
+    {
+      "id": "agent_013",
+      "name": "Inventory Agent",
+      "owner": null,
+      "backup_owner": null,
+      "criticality": "high",
+      "department": "Operations",
+      "documented": false
+    },
+    {
+      "id": "agent_014",
+      "name": "Data Backup Agent",
+      "owner": null,
+      "backup_owner": null,
+      "criticality": "critical",
+      "department": "IT",
+      "documented": false
+    },
+    {
+      "id": "agent_015",
+      "name": "Appointment Reminder Agent",
+      "owner": "Sarah",
+      "backup_owner": "Mike",
+      "criticality": "medium",
+      "department": "Operations",
+      "documented": true
+    }
+  ],
+  "dependencies": [
+    {"from": "agent_001", "to": "agent_002", "type": "sequential"},
+    {"from": "agent_002", "to": "agent_004", "type": "sequential"},
+    {"from": "agent_004", "to": "agent_005", "type": "sequential"},
+    {"from": "agent_003", "to": "agent_015", "type": "triggers"},
+    {"from": "agent_003", "to": "agent_004", "type": "feeds"},
+    {"from": "agent_006", "to": "agent_007", "type": "feeds"},
+    {"from": "agent_007", "to": "agent_012", "type": "feeds"},
+    {"from": "agent_008", "to": "agent_009", "type": "triggers"},
+    {"from": "agent_008", "to": "agent_006", "type": "triggers"},
+    {"from": "agent_010", "to": "agent_009", "type": "monitors"},
+    {"from": "agent_011", "to": "agent_001", "type": "feeds"},
+    {"from": "agent_013", "to": "agent_003", "type": "feeds"},
+    {"from": "agent_014", "to": "agent_004", "type": "backs_up"},
+    {"from": "agent_014", "to": "agent_009", "type": "backs_up"}
+  ]
+}
