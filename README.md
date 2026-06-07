@@ -98,7 +98,7 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 ## Demo Results 
 ## Terminal Output
 
-### Demo Summary — What Taha Sees
+### Demo Summary
 ![Demo Summary](Images/WhatTAha.png)
 | Metric | Result |
 |--------|--------|
