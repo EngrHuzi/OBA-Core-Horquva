@@ -61,7 +61,7 @@ Maps how agents depend on each other and simulates cascade failures.
 ---
 
 ### Module 03 — Risk Intelligence 
-(Images/Risk.png)
+![Module 03 Output](Images/Risk.png)
 Fuses ownership risk and dependency risk into one final risk score per agent and computes an overall Organizational Health Score.
 
 **What it does:**
