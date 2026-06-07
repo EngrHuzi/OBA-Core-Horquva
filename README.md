@@ -126,19 +126,22 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 ---
 
 ## Project Structure
-data/
-sunrise_care.json               # agent + dependency dataset
-modules/
-init.py
-ownership_intelligence.py       # Module 01 — Huzaifa
-dependency_intelligence.py      # Module 02 — Huzaifa
-risk_intelligence.py            # Module 03 — Kamran
-recommendation_engine.py        # Module 04 — Kamran
-main.py                           # runs all 4 modules
-pyproject.toml                    # dependencies
-uv.lock                           # locked dependency versions
 
----
+```
+data/
+  sunrise_care.json               # agent + dependency dataset
+
+modules/
+  __init__.py
+  ownership_intelligence.py       # Module 01 — Ownership Analysis
+  dependency_intelligence.py      # Module 02 — Dependency Mapping
+  risk_intelligence.py            # Module 03 — Risk Scoring
+  recommendation_engine.py        # Module 04 — Action Recommendations
+
+main.py                           # runs all 4 modules in sequence
+pyproject.toml                    # project dependencies
+uv.lock                           # locked dependency versions
+```
 
 ## How to Run
 
