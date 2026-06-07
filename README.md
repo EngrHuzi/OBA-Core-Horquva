@@ -19,8 +19,9 @@ OBA Core answers all of this — automatically.
 ---
 
 ## Modules Implemented
+### Module 01 — Ownership Intelligence
+![Module 01 Output](Images/module_01.png)
 
-### Module 01 — Ownership Intelligence *(Huzaifa)*
 Analyzes every AI agent to determine ownership status and risk.
 
 **What it does:**
@@ -42,7 +43,7 @@ Analyzes every AI agent to determine ownership status and risk.
 
 ---
 
-### Module 02 — Dependency Intelligence *(Huzaifa)*
+### Module 02 — Dependency Intelligence 
 Maps how agents depend on each other and simulates cascade failures.
 
 **What it does:**
@@ -59,7 +60,7 @@ Maps how agents depend on each other and simulates cascade failures.
 
 ---
 
-### Module 03 — Risk Intelligence *(Kamran)*
+### Module 03 — Risk Intelligence 
 Fuses ownership risk and dependency risk into one final risk score per agent and computes an overall Organizational Health Score.
 
 **What it does:**
@@ -76,7 +77,7 @@ Fuses ownership risk and dependency risk into one final risk score per agent and
 
 ---
 
-### Module 04 — Recommendation Engine *(Kamran)*
+### Module 04 — Recommendation Engine
 Generates specific, prioritized, actionable recommendations based on the risk analysis.
 
 **What it does:**
@@ -94,11 +95,8 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 
 ---
 
-## Demo Results — What Taha Sees
+## Demo Results 
 ## Terminal Output
-
-### Module 01 — Ownership Intelligence
-![Module 01 Output](Images/module_01.png)
 
 ### Demo Summary — What Taha Sees
 ![Demo Summary](Images/WhatTAha.png)
