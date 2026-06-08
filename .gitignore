@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Node.js
+backend/node_modules/
+backend_extracted/
+
+# Environment variables (never commit real credentials)
+backend/.env

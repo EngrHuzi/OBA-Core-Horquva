@@ -126,25 +126,9 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 
 ---
 
-## Project Structure
-
-```
-data/
-  sunrise_care.json               # agent + dependency dataset
-
-modules/
-  __init__.py
-  ownership_intelligence.py       # Module 01 — Ownership Analysis
-  dependency_intelligence.py      # Module 02 — Dependency Mapping
-  risk_intelligence.py            # Module 03 — Risk Scoring
-  recommendation_engine.py        # Module 04 — Action Recommendations
-
-main.py                           # runs all 4 modules in sequence
-pyproject.toml                    # project dependencies
-uv.lock                           # locked dependency versions
-```
-
 ## How to Run
+
+### Python CLI (Intelligence Engine)
 
 ```bash
 # Install dependencies
@@ -159,15 +143,88 @@ uv run main.py
 
 ---
 
+### Backend API (Node.js + Express + Supabase)
+
+```bash
+cd backend
+
+# Install dependencies
+npm install
+
+# Start the server
+node index.js
+```
+
+Server starts on **http://localhost:3000**
+
+#### Available Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/agents` | All agents with full details |
+| `GET /api/ownership` | Owners with their agents and risk levels |
+| `GET /api/dependencies` | Dependency graph with cascade relationships |
+| `GET /api/risks` | Risk score breakdown across all agents |
+| `GET /api/dashboard` | Summary: total agents, orphans, risk score, critical counts |
+
+#### Environment Setup
+
+Copy `backend/.env.example` to `backend/.env` and fill in your Supabase credentials:
+
+```
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_KEY=your_supabase_secret_key
+PORT=3000
+```
+
+> **Note:** `.env` is git-ignored and must never be committed.
+
+---
+
+## Project Structure
+
+```
+data/
+  sunrise_care.json               # agent + dependency dataset (Python CLI)
+
+modules/
+  __init__.py
+  ownership_intelligence.py       # Module 01 — Ownership Analysis
+  dependency_intelligence.py      # Module 02 — Dependency Mapping
+  risk_intelligence.py            # Module 03 — Risk Scoring
+  recommendation_engine.py        # Module 04 — Action Recommendations
+
+backend/
+  index.js                        # Express server entry point
+  supabase.js                     # Supabase client
+  package.json                    # Node.js dependencies
+  .env.example                    # Environment variable template
+  routes/
+    agents.js                     # GET /api/agents
+    ownership.js                  # GET /api/ownership
+    dependencies.js               # GET /api/dependencies
+    risks.js                      # GET /api/risks
+    dashboard.js                  # GET /api/dashboard
+
+main.py                           # runs all 4 Python modules in sequence
+pyproject.toml                    # Python project dependencies
+uv.lock                           # locked dependency versions
+```
+
+---
+
 ## Tech Stack
 
-| What | Tool |
-|------|------|
-| AI Logic | Python |
-| Package Manager | uv |
-| Terminal Output | rich |
-| Dataset | JSON |
-| Version Control | GitHub |
+| Layer | What | Tool |
+|-------|------|------|
+| Intelligence Engine | AI Logic | Python |
+| Intelligence Engine | Package Manager | uv |
+| Intelligence Engine | Terminal Output | rich |
+| Intelligence Engine | Dataset | JSON |
+| Backend API | Server | Node.js + Express |
+| Backend API | Database | Supabase (PostgreSQL) |
+| Backend API | Auth/Client | @supabase/supabase-js |
+| Both | Version Control | GitHub |
 
 ---
 
@@ -179,3 +236,4 @@ uv run main.py
 | Module 02 — Dependency Intelligence | Huzaifa |
 | Module 03 — Risk Intelligence | Kamran |
 | Module 04 — Recommendation Engine | Kamran |
+| Backend API (Node.js + Supabase) | Backend Team |
