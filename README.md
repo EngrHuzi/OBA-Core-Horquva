@@ -156,6 +156,7 @@ Maps every person to the agents they own, identifies human single points of fail
 Maps every AI tool in use across the organization — who owns it, how many users depend on it, which agents and workflows it powers, and what breaks if access is lost.
 
 **What it does:**
+![](Images/Module_07(1).png)
 - Scores every AI tool for risk: ChatGPT, Claude, Gemini, Microsoft Copilot, GitHub Copilot
 - Identifies tools with no backup/alternative assigned
 - Maps tool-to-agent and tool-to-workflow dependencies
@@ -201,6 +202,7 @@ Maps every workflow as a full step-by-step chain (Human → Tool → Agent → O
 Maps where critical organizational knowledge lives — which people hold it, which assets are undocumented, and exactly what the organization loses if a key person walks out.
 
 **What it does:**
+![](Images/Module_09(1).png)
 - Calculates a Knowledge Concentration Score per person (0–100%)
 - Identifies people who are sole holders of critical undocumented knowledge
 - Lists every undocumented agent, workflow, and AI tool
@@ -363,20 +365,8 @@ backend/
     dashboard.js                        # GET /api/dashboard
 
 Images/
-  module_01.png                         # Module 01 terminal output
-  Modules_2.png                         # Module 02 terminal output
-  Risk.png                              # Module 03 terminal output
-  Modules_4.png                         # Module 04 terminal output
-  if_simulates_fails.png                # Module 05 terminal output
-  Modules_6.png                         # Module 06 terminal output
-  Human_map_summary.png                 # Module 06 summary panel
-  module_07.png                         # Module 07 terminal output
-  module_08.png                         # Module 08 terminal output
-  module_09.png                         # Module 09 terminal output
-  module_10.png                         # Module 10 terminal output
-  WhatTAha.png                          # Full demo summary
-
-main.py                                 # runs all 10 Python modules in sequence
+ 
+ main.py                                 # runs all 10 Python modules in sequence
 pyproject.toml                          # Python project dependencies
 uv.lock                                 # locked dependency versions
 ```
@@ -398,7 +388,7 @@ uv.lock                                 # locked dependency versions
 
 ---
 
-## Module Engineering Credits
+## Module Engineering 
 
 | Module | Module Name | Lead Engineer |
 |--------|-------------|---------------|
