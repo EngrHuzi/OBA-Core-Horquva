@@ -6,6 +6,8 @@ from modules.ownership_intelligence import run_ownership_intelligence, display_o
 from modules.dependency_intelligence import run_dependency_intelligence, display_dependency_report
 from modules.risk_intelligence import run_risk_intelligence, display_risk_report
 from modules.recommendation_engine import generate_recommendations, display_recommendation_report
+from modules.whatif_simulation import run_whatif_simulation, display_whatif_report
+from modules.human_agent_map import run_human_agent_map, display_human_agent_map
 
 # Force UTF-8 output on Windows to avoid cp1252 encoding errors
 if sys.platform == "win32":
@@ -42,6 +44,18 @@ def main():
     # Module 4
     recommendations = generate_recommendations(risk_results, data)
     display_recommendation_report(recommendations, risk_results, health_score, data["company"])
+
+    console.print("\n" + "-" * 60 + "\n")
+
+    # Module 5
+    scenarios, baseline_health = run_whatif_simulation(DATA_PATH)
+    display_whatif_report(scenarios, baseline_health, data["company"])
+
+    console.print("\n" + "-" * 60 + "\n")
+
+    # Module 6
+    profiles, gaps, results = run_human_agent_map(DATA_PATH)
+    display_human_agent_map(profiles, gaps, results, data["company"])
 
     console.print("\n=== OBA Core Analysis Complete ===\n")
 

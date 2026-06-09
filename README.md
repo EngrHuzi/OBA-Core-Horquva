@@ -19,6 +19,7 @@ OBA Core answers all of this — automatically.
 ---
 
 ## Modules Implemented
+
 ### Module 01 — Ownership Intelligence
 ![Module 01 Output](Images/module_01.png)
 
@@ -43,7 +44,9 @@ Analyzes every AI agent to determine ownership status and risk.
 
 ---
 
-### Module 02 — Dependency Intelligence 
+### Module 02 — Dependency Intelligence
+![Module 02 Output](Images/Modules_2.png)
+
 Maps how agents depend on each other and simulates cascade failures.
 
 **What it does:**
@@ -60,8 +63,9 @@ Maps how agents depend on each other and simulates cascade failures.
 
 ---
 
-### Module 03 — Risk Intelligence 
+### Module 03 — Risk Intelligence
 ![Module 03 Output](Images/Risk.png)
+
 Fuses ownership risk and dependency risk into one final risk score per agent and computes an overall Organizational Health Score.
 
 **What it does:**
@@ -79,6 +83,8 @@ Fuses ownership risk and dependency risk into one final risk score per agent and
 ---
 
 ### Module 04 — Recommendation Engine
+![Module 04 Output](Images/Modules_4.png)
+
 Generates specific, prioritized, actionable recommendations based on the risk analysis.
 
 **What it does:**
@@ -96,11 +102,58 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 
 ---
 
-## Demo Results 
-## Terminal Output
+### Module 05 — What-If Simulation Engine
+![Module 05 Output](Images/if_simulates_fails.png)
 
-### Demo Summary
+Simulates "what if" scenarios and shows exactly how the Organizational Health Score changes if a person leaves or an agent fails.
+
+**What it does:**
+- Simulates every owner leaving the organization one by one
+- Simulates every CRITICAL/HIGH/SPOF agent failing
+- Recalculates Health Score in real time for each scenario
+- Shows before → after risk level per affected agent
+- Sorts all scenarios by worst impact first
+- Identifies the single most dangerous scenario for the organization
+
+**How it works:**
+- **Person Leaves** → all their agents become orphaned (+35 risk score each), Health Score recalculated
+- **Agent Fails** → agent goes to max risk (170), all cascade victims get +30 score, Health Score recalculated
+
+**Key findings on Sunrise Care demo:**
+- Worst scenario: **Robert leaves → Health Score drops 56 → 28 (CRITICAL)**
+- 5 agents immediately unmanaged if Robert leaves
+- Lead Scoring Agent failure → 4 downstream agents disrupted
+- Every scenario ranked so leadership knows exactly where to act first
+
+---
+
+### Module 06 — Human-Agent Dependency Map
+![Module 06 Output](Images/Modules_6.png)
+
+Maps every person to the agents they own, identifies human single points of failure, and gives full coverage analysis across the organization.
+
+**What it does:**
+- Builds an ownership tree for every person (who owns what, with risk levels)
+- Calculates coverage score per person: % of their agents that have a backup owner
+- Identifies Human SPOFs: people who own 3+ agents with no backups
+- Lists every coverage gap: missing owners, missing backups, or both
+- Shows exactly which departments each person is responsible for
+
+![Human-Agent Map Summary](Images/Human_map_summary.png)
+
+**Key findings on Sunrise Care demo:**
+- **Robert = Human SPOF** — owns 5 agents, 0% coverage, all CRITICAL/HIGH risk
+- Sarah = 100% coverage — all 3 agents have backup owners ✅
+- 9 total coverage gaps across the organization
+- 2 agents with no owner at all (Inventory Agent, Data Backup Agent)
+- 7 agents with no backup owner
+
+---
+
+## Demo Results
+
 ![Demo Summary](Images/WhatTAha.png)
+
 | Metric | Result |
 |--------|--------|
 | Total Agents Analyzed | 15 |
@@ -108,9 +161,11 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 | HIGH Risk Agents | 6 |
 | Single Points of Failure | 4 |
 | Robert's Agents (zero backups) | 5 → CRITICAL |
-| If Robert Leaves | 5 agents immediately unmanaged |
+| If Robert Leaves | Health Score: 56 → 28 (CRITICAL DROP) |
 | Organizational Health Score | 56/100 — AT RISK |
 | Recommendations Generated | 12 |
+| Human Single Points of Failure | 1 (Robert) |
+| Total Coverage Gaps | 9 |
 
 ---
 
@@ -134,7 +189,7 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 # Install dependencies
 uv sync
 
-# Run all 4 modules
+# Run all 6 modules
 uv run main.py
 ```
 
@@ -185,30 +240,42 @@ PORT=3000
 
 ```
 data/
-  sunrise_care.json               # agent + dependency dataset (Python CLI)
+  sunrise_care.json                  # agent + dependency dataset (Python CLI)
 
 modules/
   __init__.py
-  ownership_intelligence.py       # Module 01 — Ownership Analysis
-  dependency_intelligence.py      # Module 02 — Dependency Mapping
-  risk_intelligence.py            # Module 03 — Risk Scoring
-  recommendation_engine.py        # Module 04 — Action Recommendations
+  ownership_intelligence.py          # Module 01 — Ownership Analysis
+  dependency_intelligence.py         # Module 02 — Dependency Mapping
+  risk_intelligence.py               # Module 03 — Risk Scoring
+  recommendation_engine.py           # Module 04 — Action Recommendations
+  whatif_simulation.py               # Module 05 — What-If Simulation Engine
+  human_agent_map.py                 # Module 06 — Human-Agent Dependency Map
 
 backend/
-  index.js                        # Express server entry point
-  supabase.js                     # Supabase client
-  package.json                    # Node.js dependencies
-  .env.example                    # Environment variable template
+  index.js                           # Express server entry point
+  supabase.js                        # Supabase client
+  package.json                       # Node.js dependencies
+  .env.example                       # Environment variable template
   routes/
-    agents.js                     # GET /api/agents
-    ownership.js                  # GET /api/ownership
-    dependencies.js               # GET /api/dependencies
-    risks.js                      # GET /api/risks
-    dashboard.js                  # GET /api/dashboard
+    agents.js                        # GET /api/agents
+    ownership.js                     # GET /api/ownership
+    dependencies.js                  # GET /api/dependencies
+    risks.js                         # GET /api/risks
+    dashboard.js                     # GET /api/dashboard
 
-main.py                           # runs all 4 Python modules in sequence
-pyproject.toml                    # Python project dependencies
-uv.lock                           # locked dependency versions
+Images/
+  module_01.png                      # Module 01 terminal output
+  Modules_2.png                      # Module 02 terminal output
+  Risk.png                           # Module 03 terminal output
+  Modules_4.png                      # Module 04 terminal output
+  if_simulates_fails.png             # Module 05 terminal output
+  Modules_6.png                      # Module 06 terminal output
+  Human_map_summary.png              # Module 06 summary panel
+  WhatTAha.png                       # Full demo summary
+
+main.py                              # runs all 6 Python modules in sequence
+pyproject.toml                       # Python project dependencies
+uv.lock                              # locked dependency versions
 ```
 
 ---
@@ -234,6 +301,8 @@ uv.lock                           # locked dependency versions
 |--------|----------|
 | Module 01 — Ownership Intelligence | Huzaifa |
 | Module 02 — Dependency Intelligence | Huzaifa |
-| Module 03 — Risk Intelligence | Kamran |
+| Module 03 — Risk Intelligence | Huzaifa |
 | Module 04 — Recommendation Engine | Kamran |
+| Module 05 — What-If Simulation Engine | Kamran |
+| Module 06 — Human-Agent Dependency Map | Kamran |
 | Backend API (Node.js + Supabase) | Backend Team |
