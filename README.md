@@ -337,17 +337,3 @@ uv.lock                              # locked dependency versions
 | Both | Version Control | GitHub |
 
 ---
-
-## Team
-
-| Module | Engineer |
-|--------|----------|
-| Module 01 — Ownership Intelligence | Huzaifa |
-| Module 02 — Dependency Intelligence | Huzaifa |
-| Module 03 — Risk Intelligence | Huzaifa |
-| Module 04 — Recommendation Engine | Kamran |
-| Module 05 — What-If Simulation Engine | Kamran |
-| Module 06 — Human-Agent Dependency Map | Kamran |
-| Module 07 — AI Tool Intelligence | Huzaifa |
-| Module 08 — Workflow Intelligence | Huzaifa |
-| Backend API (Node.js + Supabase) | Backend Team |
