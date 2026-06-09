@@ -1,9 +1,11 @@
 # OBA Core — AI Workforce Intelligence
 **Horquva | MVP Demo — Sunrise Care (Fictional Company)**
 
-OBA (Organizational Brain Analysis) is the intelligence engine that discovers, maps, and analyzes AI agents inside an organization — finding who owns them, how they connect, what breaks if something goes wrong, and exactly what to do about it.
-
-> **"The only thing that matters: This is actually useful."** — Horquva
+OBA (Organizational Brain Analysis) is the intelligence engine that discovers, maps, and analyzes AI agents inside an organization — finding who owns them, how 
+they connect, what breaks if something goes wrong, and exactly what to do about it.
+![](Project_overveiw.png)
+> 
+**"The only thing that matters: This is actually useful."** — Horquva
 
 ---
 
