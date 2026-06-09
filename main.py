@@ -8,6 +8,8 @@ from modules.risk_intelligence import run_risk_intelligence, display_risk_report
 from modules.recommendation_engine import generate_recommendations, display_recommendation_report
 from modules.whatif_simulation import run_whatif_simulation, display_whatif_report
 from modules.human_agent_map import run_human_agent_map, display_human_agent_map
+from modules.ai_tool_intelligence import run_ai_tool_intelligence, display_ai_tool_report
+from modules.workflow_intelligence import run_workflow_intelligence, display_workflow_report
 
 # Force UTF-8 output on Windows to avoid cp1252 encoding errors
 if sys.platform == "win32":
@@ -56,6 +58,18 @@ def main():
     # Module 6
     profiles, gaps, results = run_human_agent_map(DATA_PATH)
     display_human_agent_map(profiles, gaps, results, data["company"])
+
+    console.print("\n" + "-" * 60 + "\n")
+
+    # Module 7
+    tool_risks, dep_maps, dept_tool_map = run_ai_tool_intelligence(DATA_PATH)
+    display_ai_tool_report(tool_risks, dep_maps, dept_tool_map, data["company"])
+
+    console.print("\n" + "-" * 60 + "\n")
+
+    # Module 8
+    wf_risks, node_failures = run_workflow_intelligence(DATA_PATH)
+    display_workflow_report(wf_risks, node_failures, data["company"])
 
     console.print("\n=== OBA Core Analysis Complete ===\n")
 

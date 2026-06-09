@@ -143,10 +143,51 @@ Maps every person to the agents they own, identifies human single points of fail
 
 **Key findings on Sunrise Care demo:**
 - **Robert = Human SPOF** — owns 5 agents, 0% coverage, all CRITICAL/HIGH risk
-- Sarah = 100% coverage — all 3 agents have backup owners ✅
+- Sarah = 100% coverage — all 3 agents have backup owners
 - 9 total coverage gaps across the organization
 - 2 agents with no owner at all (Inventory Agent, Data Backup Agent)
 - 7 agents with no backup owner
+
+---
+
+### Module 07 — AI Tool Intelligence
+
+Maps every AI tool in use across the organization — who uses it, which agents and workflows depend on it, what breaks if access is lost, and what the risk exposure is.
+
+**What it does:**
+- Scores every AI tool: ChatGPT, Claude, Gemini, Copilot, GitHub Copilot
+- Identifies tools with no backup/alternative assigned
+- Maps tool-to-agent and tool-to-workflow dependencies
+- Shows which departments are exposed to each tool
+- Calculates monthly AI tool spend
+- Detects undocumented tools with no usage policy
+
+**Key findings on Sunrise Care demo:**
+- ChatGPT = CRITICAL risk — 7 users, 4 departments, 3 agents, no backup, undocumented
+- Microsoft Copilot = HIGH risk — org-wide dependency across all 8 departments, no backup
+- 3 of 5 tools have no backup alternative
+- Total monthly AI tool spend: $1,444
+- If ChatGPT access is lost: Lead Generation, Marketing Campaign, and Customer Support workflows all break
+
+---
+
+### Module 08 — Workflow Intelligence
+
+Maps every workflow as a full chain (Human → Tool → Agent → Outcome), identifies ownership, detects single-node failure points, and scores risk across all workflows.
+
+**What it does:**
+- Visualizes every workflow step-by-step: who does what (human/tool/agent)
+- Scores each workflow for risk: ownership gaps, undocumented status, human SPOFs
+- Identifies single-node failure points: which one person or tool causes total workflow collapse
+- Shows ownership coverage: who owns which workflows and whether backups exist
+- Surfaces undocumented workflows with no runbook
+
+**Key findings on Sunrise Care demo:**
+- 2 CRITICAL workflows: Lead Generation (Robert, no backup, undocumented) and IT Operations (David, no backup, undocumented)
+- 7 of 7 workflows have a single human dependency
+- 14 single-node failure points identified across all workflows
+- If Robert leaves: Lead Generation Workflow collapses — no human executor, no runbook
+- If ChatGPT loses access: 3 workflows are immediately disrupted
 
 ---
 
@@ -250,6 +291,8 @@ modules/
   recommendation_engine.py           # Module 04 — Action Recommendations
   whatif_simulation.py               # Module 05 — What-If Simulation Engine
   human_agent_map.py                 # Module 06 — Human-Agent Dependency Map
+  ai_tool_intelligence.py            # Module 07 — AI Tool Intelligence
+  workflow_intelligence.py           # Module 08 — Workflow Intelligence
 
 backend/
   index.js                           # Express server entry point
@@ -273,7 +316,7 @@ Images/
   Human_map_summary.png              # Module 06 summary panel
   WhatTAha.png                       # Full demo summary
 
-main.py                              # runs all 6 Python modules in sequence
+main.py                              # runs all 8 Python modules in sequence
 pyproject.toml                       # Python project dependencies
 uv.lock                              # locked dependency versions
 ```
@@ -305,4 +348,6 @@ uv.lock                              # locked dependency versions
 | Module 04 — Recommendation Engine | Kamran |
 | Module 05 — What-If Simulation Engine | Kamran |
 | Module 06 — Human-Agent Dependency Map | Kamran |
+| Module 07 — AI Tool Intelligence | Huzaifa |
+| Module 08 — Workflow Intelligence | Huzaifa |
 | Backend API (Node.js + Supabase) | Backend Team |
