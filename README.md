@@ -4,7 +4,7 @@
 OBA (Organizational Brain Analysis) is the intelligence engine that discovers, maps, and analyzes AI agents inside an organization — finding who owns them, how 
 they connect, what breaks if something goes wrong, and exactly what to do about it.
 
-![](Images/Project_overveiw.png)
+![](Images/dashboard.png)
 > 
 **"The only thing that matters: This is actually useful."** — Horquva
 
@@ -24,7 +24,7 @@ OBA Core answers all of this — automatically.
 ## Modules Implemented
 
 ### Module 01 — Ownership Intelligence
-![Module 01 Output](Images/module_01.png)
+![Module 01 Output](Images/agent_summary.png)
 
 Analyzes every AI agent to determine ownership status and risk.
 
@@ -335,7 +335,18 @@ PORT=3000
 > **Note:** `.env` is git-ignored and must never be committed.
 
 ---
+## Frontend UI
 
+**Stack:** Next.js 16 · TypeScript · Tailwind CSS v4 · Recharts · Lucide Icons
+The `frontend/` directory contains the executive-facing dashboard that visualizes OBA Core intelligence for organizational leaders.
+### Run the Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+
+Runs on http://localhost:3001
+```
 ## Project Structure
 
 ```
@@ -367,12 +378,37 @@ backend/
     risks.js                            # GET /api/risks
     dashboard.js                        # GET /api/dashboard
 
+
+frontend/
+├── app/
+│   ├── layout.tsx                # Persistent Shell (Sidebar)
+│   ├── globals.css               # Design system, tokens, animations
+│   ├── page.tsx                  # Screen 1: Executive Dashboard 
+│   ├── ownership/page.tsx        # Screen 2: Ownership Intelligence (stub)
+│   ├── risk/page.tsx             # Screen 3: Risk Intelligence (stub)
+│   ├── map/page.tsx              # Screen 4: Dependency Map (stub)
+│   ├── simulation/page.tsx       # Screen 5: What-If Simulation (stub)
+│   └── recommendations/page.tsx  # Screen 6: Recommendations (stub)
+├── components/
+│   ├── layout/
+│   │   └── Sidebar.tsx           # Navigation sidebar with 6 routes
+│   └── dashboard/
+│       ├── KpiStrip.tsx          # 4 KPI cards (Risk, Agents, Orphaned, Dependencies)
+│       ├── Heatmap.tsx           # Risk distribution stacked bar chart by department
+│       ├── RiskSplit.tsx         # Two-column: Top Risks + Priority Actions
+│       └── AgentTable.tsx        # Full agent registry table (Criticality + Risk columns)
+├── lib/
+│   └── data.ts                   # Server-side JSON loader for sunrise_care.json
+└── types/
+    └── index.ts                  # TypeScript definitions (Agent, Dependency, AITool, Workflow, Dataset)
+```
 Images/
  
  main.py                                 # runs all 10 Python modules in sequence
 pyproject.toml                          # Python project dependencies
 uv.lock                                 # locked dependency versions
 ```
+
 
 ---
 

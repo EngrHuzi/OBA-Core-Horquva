@@ -15,3 +15,6 @@ backend_extracted/
 
 # Environment variables (never commit real credentials)
 backend/.env
+
+# Internal planning docs
+FRONTEND_PLAN.md
