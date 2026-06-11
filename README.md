@@ -131,7 +131,7 @@ Simulates "what if" scenarios and shows exactly how the Organizational Health Sc
 ---
 
 ### Module 06 — Human-Agent Dependency Map
-![Module 06 Output](Images/Human_map.png)
+![Module 06 Output](Images/ai_human_mapping.png)
 
 Maps every person to the agents they own, identifies human single points of failure, and gives full coverage analysis across the organization.
 
