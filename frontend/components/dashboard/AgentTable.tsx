@@ -1,44 +1,13 @@
 import { Agent, RiskLevel } from '../../types';
 import { AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import clsx from 'clsx';
+import { RiskBadge } from '../ui/RiskBadge';
 
 interface AgentTableProps {
   agents: Agent[];
 }
 
-/**
- * Derives a governance-based Risk level from the agent's ownership,
- * documentation, and criticality — mirroring the OBA Core scoring logic:
- *   No owner        → +40
- *   No backup owner → +30
- *   Not documented  → +15
- *   Criticality     → critical +15 / high +10 / medium +5 / low +0
- *
- * Score → Risk tier:
- *   ≥ 70  → CRITICAL
- *   ≥ 40  → HIGH
- *   ≥ 20  → MEDIUM
- *   <  20 → LOW
- */
-function deriveRisk(agent: Agent): RiskLevel {
-  let score = 0;
-  if (!agent.owner)        score += 40;
-  if (!agent.backup_owner) score += 30;
-  if (!agent.documented)   score += 15;
-
-  const critWeight: Record<RiskLevel, number> = {
-    critical: 15,
-    high: 10,
-    medium: 5,
-    low: 0,
-  };
-  score += critWeight[agent.criticality];
-
-  if (score >= 70) return 'critical';
-  if (score >= 40) return 'high';
-  if (score >= 20) return 'medium';
-  return 'low';
-}
+import { deriveRisk } from '../../lib/risk';
 
 export function AgentTable({ agents }: AgentTableProps) {
   // Sort by computed risk severity (highest first)
@@ -133,15 +102,7 @@ export function AgentTable({ agents }: AgentTableProps) {
 
                   {/* Risk — computed governance score */}
                   <td className="px-6 py-4">
-                    <div className={clsx(
-                      "inline-flex px-3 py-1 rounded-md text-xs font-semibold tracking-wide uppercase border",
-                      risk === 'critical' && 'bg-red-500/10 text-red-400 border-red-500/20',
-                      risk === 'high'     && 'bg-orange-500/10 text-orange-400 border-orange-500/20',
-                      risk === 'medium'   && 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
-                      risk === 'low'      && 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-                    )}>
-                      {risk}
-                    </div>
+                    <RiskBadge level={risk} />
                   </td>
                 </tr>
               );
