@@ -31,6 +31,16 @@ Complete agent registry table with 5 columns:
 - **Criticality** — inherent business importance of the agent
 - **Risk** — computed governance score (mirrors OBA Core Module 03 scoring: ownership + documentation + criticality weight)
 
+### 05 Module 2 — Ownership Intelligence
+- **Ownership Overview** — KPI strip for coverage gaps, SPOFs, and orphaned agents.
+- **Concentration Bar** — Stacked bar mapping exposed vs covered agents per owner.
+- **Ownership List** — Detailed registry of agents grouped by owner with specific risk badges.
+
+### 06 Module 3 — Dependency Map
+- **Dependency KPIs** — Strip showing Total Agents, Dependencies, SPOFs Detected, and Max Cascade Risk.
+- **Dependency Flow Canvas** — React Flow node graph auto-layouted with Dagre, featuring interactive failure simulation and SPOF detection highlighting.
+- **Agent Continuity Matrix** — An executive table summarizing upstream dependencies, downstream cascading impact, and continuity risk for each agent.
+
 ---
 
 ## Design System
@@ -48,9 +58,9 @@ Complete agent registry table with 5 columns:
 | Route | Status | Description |
 |---|---|---|
 | `/` | ✅ Built | Executive Dashboard (Module 1) |
-| `/ownership` | 🔜 Next | Ownership Intelligence (Module 2) |
+| `/ownership` | ✅ Built | Ownership Intelligence (Module 2) |
 | `/risk` | 🔜 Stub | Risk Intelligence |
-| `/map` | 🔜 Stub | Dependency Map (Module 3) |
+| `/map` | ✅ Built | Dependency Map (Module 3) |
 | `/simulation` | 🔜 Stub | What-If Simulation (Module 4) |
 | `/recommendations` | 🔜 Stub | Recommendations (Module 5) |
 
@@ -83,4 +93,5 @@ Runs on **http://localhost:3001**
 | Styling | Tailwind CSS v4 |
 | Charts | Recharts 3 |
 | Icons | Lucide React |
+| Graphs | React Flow (`@xyflow/react`) + Dagre |
 | Data | Local JSON (`sunrise_care.json`) |

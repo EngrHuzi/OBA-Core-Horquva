@@ -48,7 +48,7 @@ Analyzes every AI agent to determine ownership status and risk.
 ---
 
 ### Module 02 — Dependency Intelligence
-![Module 02 Output](Images/Modules_2.png)
+![Module 02 Output](Images/dependency_map.png)
 
 Maps how agents depend on each other and simulates cascade failures.
 
@@ -384,23 +384,34 @@ frontend/
 │   ├── layout.tsx                # Persistent Shell (Sidebar)
 │   ├── globals.css               # Design system, tokens, animations
 │   ├── page.tsx                  # Screen 1: Executive Dashboard 
-│   ├── ownership/page.tsx        # Screen 2: Ownership Intelligence (stub)
+│   ├── ownership/page.tsx        # Screen 2: Ownership Intelligence
 │   ├── risk/page.tsx             # Screen 3: Risk Intelligence (stub)
-│   ├── map/page.tsx              # Screen 4: Dependency Map (stub)
+│   ├── map/page.tsx              # Screen 4: Dependency Map
 │   ├── simulation/page.tsx       # Screen 5: What-If Simulation (stub)
 │   └── recommendations/page.tsx  # Screen 6: Recommendations (stub)
 ├── components/
 │   ├── layout/
 │   │   └── Sidebar.tsx           # Navigation sidebar with 6 routes
-│   └── dashboard/
-│       ├── KpiStrip.tsx          # 4 KPI cards (Risk, Agents, Orphaned, Dependencies)
-│       ├── Heatmap.tsx           # Risk distribution stacked bar chart by department
-│       ├── RiskSplit.tsx         # Two-column: Top Risks + Priority Actions
-│       └── AgentTable.tsx        # Full agent registry table (Criticality + Risk columns)
+│   ├── dashboard/                # Module 1
+│   │   ├── KpiStrip.tsx          
+│   │   ├── Heatmap.tsx           
+│   │   ├── RiskSplit.tsx         
+│   │   └── AgentTable.tsx        
+│   ├── ownership/                # Module 2
+│   │   ├── OwnershipOverview.tsx 
+│   │   ├── ConcentrationBar.tsx  
+│   │   └── OwnershipList.tsx     
+│   └── map/                      # Module 3
+│       ├── CustomNodes.tsx       
+│       ├── DependencyKPIs.tsx    
+│       ├── FlowCanvas.tsx        
+│       └── DependencyTable.tsx   
 ├── lib/
-│   └── data.ts                   # Server-side JSON loader for sunrise_care.json
+│   ├── data.ts                   # Server-side JSON loader for sunrise_care.json
+│   ├── graph.ts                  # Graph/Cascade logic for Map
+│   └── risk.ts                   # Risk scoring utilities
 └── types/
-    └── index.ts                  # TypeScript definitions (Agent, Dependency, AITool, Workflow, Dataset)
+    └── index.ts                  # TypeScript definitions
 ```
 Images/
  
