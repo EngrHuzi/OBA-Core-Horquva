@@ -41,6 +41,11 @@ Complete agent registry table with 5 columns:
 - **Dependency Flow Canvas** — React Flow node graph auto-layouted with Dagre, featuring interactive failure simulation and SPOF detection highlighting.
 - **Agent Continuity Matrix** — An executive table summarizing upstream dependencies, downstream cascading impact, and continuity risk for each agent.
 
+### 07 Module 4 — Continuity Intelligence (What-If Simulation)
+- **Simulation Dashboard** — Coordinates baseline vs. simulated metrics.
+- **Scenario Ranking** — Interactive list of scenarios (Person Leaves, Agent Fails) ranked by worst impact first.
+- **Impact Summary** — Visually displays before/after Health Score and a detailed log of every impacted agent with their adjusted risk levels.
+
 ---
 
 ## Design System
@@ -61,7 +66,7 @@ Complete agent registry table with 5 columns:
 | `/ownership` | ✅ Built | Ownership Intelligence (Module 2) |
 | `/risk` | 🔜 Stub | Risk Intelligence |
 | `/map` | ✅ Built | Dependency Map (Module 3) |
-| `/simulation` | 🔜 Stub | What-If Simulation (Module 4) |
+| `/simulation` | ✅ Built | What-If Simulation (Module 4) |
 | `/recommendations` | 🔜 Stub | Recommendations (Module 5) |
 
 ---

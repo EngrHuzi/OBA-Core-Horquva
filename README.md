@@ -106,7 +106,7 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 ---
 
 ### Module 05 — What-If Simulation Engine
-![Module 05 Output](Images/if_simulates_fails.png)
+![Module 05 Output](Images/what_if.png)
 
 Simulates "what if" scenarios and shows exactly how the Organizational Health Score changes if a person leaves or an agent fails.
 
@@ -387,7 +387,7 @@ frontend/
 │   ├── ownership/page.tsx        # Screen 2: Ownership Intelligence
 │   ├── risk/page.tsx             # Screen 3: Risk Intelligence (stub)
 │   ├── map/page.tsx              # Screen 4: Dependency Map
-│   ├── simulation/page.tsx       # Screen 5: What-If Simulation (stub)
+│   ├── simulation/page.tsx       # Screen 5: What-If Simulation
 │   └── recommendations/page.tsx  # Screen 6: Recommendations (stub)
 ├── components/
 │   ├── layout/
@@ -401,15 +401,20 @@ frontend/
 │   │   ├── OwnershipOverview.tsx 
 │   │   ├── ConcentrationBar.tsx  
 │   │   └── OwnershipList.tsx     
-│   └── map/                      # Module 3
-│       ├── CustomNodes.tsx       
-│       ├── DependencyKPIs.tsx    
-│       ├── FlowCanvas.tsx        
-│       └── DependencyTable.tsx   
+│   ├── map/                      # Module 3
+│   │   ├── CustomNodes.tsx       
+│   │   ├── DependencyKPIs.tsx    
+│   │   ├── FlowCanvas.tsx        
+│   │   └── DependencyTable.tsx   
+│   └── simulation/               # Module 4
+│       ├── SimulationDashboard.tsx
+│       ├── ScenarioRanking.tsx   
+│       └── ImpactSummary.tsx     
 ├── lib/
 │   ├── data.ts                   # Server-side JSON loader for sunrise_care.json
 │   ├── graph.ts                  # Graph/Cascade logic for Map
-│   └── risk.ts                   # Risk scoring utilities
+│   ├── risk.ts                   # Risk scoring utilities
+│   └── simulation.ts             # "What-If" scenario logic
 └── types/
     └── index.ts                  # TypeScript definitions
 ```
