@@ -86,7 +86,7 @@ Fuses ownership risk and dependency risk into one final risk score per agent and
 ---
 
 ### Module 04 — Recommendation Engine
-![Module 04 Output](Images/Modules_4.png)
+![Module 04 Output](Images/recommendations.png)
 
 Generates specific, prioritized, actionable recommendations based on the risk analysis.
 
