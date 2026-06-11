@@ -385,10 +385,10 @@ frontend/
 │   ├── globals.css               # Design system, tokens, animations
 │   ├── page.tsx                  # Screen 1: Executive Dashboard 
 │   ├── ownership/page.tsx        # Screen 2: Ownership Intelligence
-│   ├── risk/page.tsx             # Screen 3: Risk Intelligence (stub)
+│   ├── risk/page.tsx             # Screen 3: Risk Intelligence
 │   ├── map/page.tsx              # Screen 4: Dependency Map
 │   ├── simulation/page.tsx       # Screen 5: What-If Simulation
-│   └── recommendations/page.tsx  # Screen 6: Recommendations (stub)
+│   └── recommendations/page.tsx  # Screen 6: Recommendations
 ├── components/
 │   ├── layout/
 │   │   └── Sidebar.tsx           # Navigation sidebar with 6 routes
@@ -410,6 +410,11 @@ frontend/
 │       ├── SimulationDashboard.tsx
 │       ├── ScenarioRanking.tsx   
 │       └── ImpactSummary.tsx     
+│   ├── recommendations/          # Module 5
+│       ├── RecommendationHeader.tsx
+│       ├── Top5Urgent.tsx
+│       ├── RecommendationList.tsx
+│       └── DemoSummary.tsx
 ├── lib/
 │   ├── data.ts                   # Server-side JSON loader for sunrise_care.json
 │   ├── graph.ts                  # Graph/Cascade logic for Map

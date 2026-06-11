@@ -1,101 +1,266 @@
-import { Activity, ShieldAlert, ArrowRight, Info } from 'lucide-react';
-import { ScenarioResult } from '../../lib/simulation';
-import { RiskLevel } from '../../types';
+'use client';
 
-interface ImpactSummaryProps {
+import { ScenarioResult, ScenarioType } from '../../lib/simulation';
+import { RiskLevel } from '../../types';
+import {
+  Activity, ArrowRight, ShieldAlert, Info,
+  UserMinus, ShieldOff, Cpu, GitBranch,
+} from 'lucide-react';
+
+interface Props {
   scenario: ScenarioResult;
 }
 
-const riskColor: Record<RiskLevel, string> = {
-  critical: 'text-red-400',
-  high: 'text-orange-400',
-  medium: 'text-yellow-400',
-  low: 'text-green-400',
+const riskBadgeClass: Record<RiskLevel, string> = {
+  critical: 'risk-critical',
+  high:     'risk-high',
+  medium:   'risk-medium',
+  low:      'risk-low',
 };
 
-const riskBg: Record<RiskLevel, string> = {
-  critical: 'bg-red-500/10 border-red-500/20',
-  high: 'bg-orange-500/10 border-orange-500/20',
-  medium: 'bg-yellow-500/10 border-yellow-500/20',
-  low: 'bg-green-500/10 border-green-500/20',
+const typeConfig: Record<ScenarioType, { icon: React.ElementType; verb: string; color: string }> = {
+  PERSON_LEAVES:    { icon: UserMinus, verb: 'leaves',       color: 'var(--risk-critical-text)' },
+  AGENT_FAILS:      { icon: ShieldOff, verb: 'fails',        color: 'var(--risk-high-text)'     },
+  TOOL_UNAVAILABLE: { icon: Cpu,       verb: 'goes offline', color: 'var(--risk-medium-text)'   },
 };
 
-export function ImpactSummary({ scenario }: ImpactSummaryProps) {
-  const scoreDrop = scenario.baselineHealthScore - scenario.simulatedHealthScore;
-  const severity = scoreDrop >= 15 ? 'CRITICAL RISK' : scoreDrop >= 5 ? 'HIGH RISK' : 'MEDIUM RISK';
-  const severityColor = scoreDrop >= 15 ? 'text-red-400' : scoreDrop >= 5 ? 'text-orange-400' : 'text-yellow-400';
+export function ImpactSummary({ scenario }: Props) {
+  const drop = scenario.baselineHealthScore - scenario.simulatedHealthScore;
+  const tc = typeConfig[scenario.type];
+  const Icon = tc.icon;
+
+  const severity =
+    drop >= 7 ? { label: 'CRITICAL IMPACT', color: 'var(--risk-critical-text)', bg: 'rgba(220,38,38,0.08)', border: 'rgba(220,38,38,0.22)' } :
+    drop >= 3 ? { label: 'HIGH IMPACT',     color: 'var(--risk-high-text)',     bg: 'rgba(234,88,12,0.08)', border: 'rgba(234,88,12,0.22)' } :
+    drop >= 1 ? { label: 'MEDIUM IMPACT',   color: 'var(--risk-medium-text)',   bg: 'rgba(202,138,4,0.08)', border: 'rgba(202,138,4,0.22)' } :
+                { label: 'LOW IMPACT',      color: 'var(--risk-low-text)',      bg: 'rgba(22,163,74,0.08)', border: 'rgba(22,163,74,0.22)' };
+
+  const afterScore = scenario.simulatedHealthScore;
+  const afterColor =
+    afterScore < 50 ? 'var(--risk-critical-text)' :
+    afterScore < 65 ? 'var(--risk-high-text)'     :
+    afterScore < 80 ? 'var(--risk-medium-text)'   :
+                      'var(--risk-low-text)';
 
   return (
-    <div className="space-y-6 animate-fade-up">
-      {/* Health Score Impact Card */}
-      <div className="card p-6 relative overflow-hidden group">
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 to-red-500/40"></div>
-        <div className="flex items-center justify-between mb-6">
+    <div className="animate-fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+      {/* ── Health Score Card ──────────────────────────────────── */}
+      <div className="card" style={{ 
+        padding: '1.5rem', 
+        position: 'relative', 
+        overflow: 'hidden',
+        background: 'rgba(22, 22, 28, 0.6)',
+        backdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255,255,255,0.05)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
+      }}>
+        {/* Top accent bar */}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+          background: `linear-gradient(90deg, ${tc.color}, transparent)`,
+          opacity: 0.8
+        }} />
+
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
           <div>
-            <h3 className="text-lg font-medium text-white flex items-center">
-              <Activity className="w-5 h-5 text-purple-400 mr-2" />
-              Organizational Health Impact
-            </h3>
-            <p className="text-sm text-slate-400 mt-1">
-              Estimated drop if {scenario.type === 'PERSON_LEAVES' ? `${scenario.targetName} leaves` : `${scenario.targetName} fails`}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+              <Activity size={15} style={{ color: 'var(--accent)' }} />
+              <h3 style={{ margin: 0, fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                Organizational Health Impact
+              </h3>
+            </div>
+            <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+              If <strong style={{ color: 'var(--text-primary)' }}>{scenario.targetName}</strong> {tc.verb}
             </p>
           </div>
-          <div className={`px-3 py-1 rounded-full border border-red-500/20 bg-red-500/10 ${severityColor} text-xs font-semibold tracking-wide`}>
-            {severity}
+          <div style={{
+            flexShrink: 0,
+            padding: '3px 10px', borderRadius: '20px',
+            background: severity.bg,
+            border: `1px solid ${severity.border}`,
+            fontSize: '0.65rem', fontWeight: 800, letterSpacing: '0.1em',
+            color: severity.color,
+          }}>
+            {severity.label}
           </div>
         </div>
 
-        <div className="flex items-center space-x-6">
-          <div className="text-center">
-            <span className="text-xs text-slate-500 uppercase tracking-wider block mb-1">Before</span>
-            <span className="text-3xl font-bold text-white">{scenario.baselineHealthScore}</span>
+        {/* Score visualisation */}
+        <div style={{
+          display: 'flex', alignItems: 'center',
+          gap: '1.5rem',
+          padding: '1.25rem 1.5rem',
+          borderRadius: '12px',
+          background: 'rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255,255,255,0.03)',
+          boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.1)'
+        }}>
+          {/* Before */}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: '0.08em', marginBottom: '4px' }}>BEFORE</div>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1 }}>
+              {scenario.baselineHealthScore}
+            </div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)' }}>/100</div>
           </div>
-          <ArrowRight className="w-6 h-6 text-slate-600" />
-          <div className="text-center">
-            <span className="text-xs text-slate-500 uppercase tracking-wider block mb-1">After</span>
-            <span className={`text-4xl font-bold ${severityColor}`}>{scenario.simulatedHealthScore}</span>
+
+          {/* Arrow */}
+          <ArrowRight size={20} style={{ color: 'var(--border-strong)', flexShrink: 0 }} />
+
+          {/* After */}
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: '0.08em', marginBottom: '4px' }}>AFTER</div>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: afterColor, lineHeight: 1 }}>
+              {afterScore}
+            </div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)' }}>/100</div>
           </div>
-          <div className="ml-auto flex flex-col items-end">
-             <span className="text-sm text-slate-400">Total Drop</span>
-             <span className="text-2xl font-bold text-red-400">-{scoreDrop} pts</span>
+
+          {/* Drop */}
+          <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
+            <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: '0.08em', marginBottom: '4px' }}>SCORE DROP</div>
+            {drop > 0 ? (
+              <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--risk-critical-text)', lineHeight: 1 }}>
+                −{drop}
+              </div>
+            ) : (
+              <div style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--risk-low-text)', lineHeight: 1 }}>
+                0
+              </div>
+            )}
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)' }}>points</div>
+          </div>
+
+          {/* Affected count */}
+          <div style={{ textAlign: 'right', borderLeft: '1px solid var(--border-subtle)', paddingLeft: '1.25rem' }}>
+            <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: '0.08em', marginBottom: '4px' }}>AFFECTED</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: tc.color, lineHeight: 1 }}>
+              {scenario.impactedAgents.length}
+            </div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)' }}>agent{scenario.impactedAgents.length !== 1 ? 's' : ''}</div>
           </div>
         </div>
       </div>
 
-      {/* Impacted Agents List */}
-      <div className="card p-6">
-        <h3 className="text-lg font-medium text-white flex items-center mb-4">
-          <ShieldAlert className="w-5 h-5 text-orange-400 mr-2" />
-          Cascade Victims & Exposed Assets ({scenario.impactedAgents.length})
-        </h3>
-        
+      {/* ── Impacted Agents ────────────────────────────────────── */}
+      <div className="card" style={{ 
+        padding: '1.5rem',
+        background: 'rgba(22, 22, 28, 0.4)',
+        backdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255,255,255,0.03)'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+          <ShieldAlert size={15} style={{ color: 'var(--risk-high-text)' }} />
+          <h3 style={{ margin: 0, fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            Cascade Victims & Exposed Agents
+          </h3>
+          <span style={{
+            fontSize: '0.65rem', fontWeight: 700, padding: '1px 7px', borderRadius: '20px',
+            background: 'rgba(234,88,12,0.1)', color: 'var(--risk-high-text)', border: '1px solid rgba(234,88,12,0.22)',
+          }}>
+            {scenario.impactedAgents.length}
+          </span>
+        </div>
+
         {scenario.impactedAgents.length === 0 ? (
-          <div className="text-center p-8 border border-dashed border-slate-700/50 rounded-lg">
-            <Info className="w-8 h-8 text-slate-500 mx-auto mb-2" />
-            <p className="text-sm text-slate-400">No agents directly impacted by this scenario.</p>
+          <div style={{
+            textAlign: 'center', padding: '2rem',
+            border: '1px dashed var(--border-default)', borderRadius: '8px',
+          }}>
+            <Info size={24} style={{ color: 'var(--text-tertiary)', marginBottom: '0.5rem' }} />
+            <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+              No agents directly impacted by this scenario.
+            </p>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {scenario.impactedAgents.map((impact, idx) => (
-              <div key={idx} className="flex items-center justify-between p-3 rounded-lg bg-[#1a1a24] border border-slate-800">
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-white">{impact.agentName}</span>
-                  <span className="text-xs text-slate-500">{impact.reason}</span>
+              <div
+                key={idx}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '0.875rem 1.25rem',
+                  borderRadius: '10px',
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.04)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  gap: '0.75rem',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)';
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                }}
+              >
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '2px' }}>
+                    {impact.agentName}
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)' }}>
+                    {impact.reason}
+                  </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className={`px-2 py-1 rounded text-[10px] uppercase tracking-wider border ${riskBg[impact.beforeRisk]} ${riskColor[impact.beforeRisk]}`}>
-                    {impact.beforeRisk}
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate-600" />
-                  <div className={`px-2 py-1 rounded text-[10px] uppercase tracking-wider border ${riskBg[impact.afterRisk]} ${riskColor[impact.afterRisk]}`}>
-                    {impact.afterRisk}
-                  </div>
+
+                {/* Before → After risk */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+                  <span
+                    className={riskBadgeClass[impact.beforeRisk]}
+                    style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.08em', padding: '2px 7px', borderRadius: '4px' }}
+                  >
+                    {impact.beforeRisk.toUpperCase()}
+                  </span>
+                  <ArrowRight size={12} style={{ color: 'var(--text-tertiary)' }} />
+                  <span
+                    className={riskBadgeClass[impact.afterRisk]}
+                    style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.08em', padding: '2px 7px', borderRadius: '4px' }}
+                  >
+                    {impact.afterRisk.toUpperCase()}
+                  </span>
                 </div>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {/* ── Workflow impact (Tool scenarios only) ──────────────── */}
+      {scenario.type === 'TOOL_UNAVAILABLE' && scenario.impactedWorkflowNames && scenario.impactedWorkflowNames.length > 0 && (
+        <div className="card" style={{ padding: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+            <GitBranch size={15} style={{ color: 'var(--accent)' }} />
+            <h3 style={{ margin: 0, fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              Workflows Using {scenario.targetName}
+            </h3>
+            <span style={{
+              fontSize: '0.65rem', fontWeight: 700, padding: '1px 7px', borderRadius: '20px',
+              background: 'var(--accent-dim)', color: 'var(--accent)', border: '1px solid var(--accent-border)',
+            }}>
+              {scenario.impactedWorkflowNames.length}
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.375rem' }}>
+            {scenario.impactedWorkflowNames.map(wfId => (
+              <span key={wfId} style={{
+                fontSize: '0.75rem', fontWeight: 500,
+                padding: '4px 10px', borderRadius: '6px',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border-default)',
+                color: 'var(--text-secondary)',
+              }}>
+                {wfId}
+              </span>
+            ))}
+          </div>
+          <p style={{ margin: '0.75rem 0 0', fontSize: '0.77rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+            If <strong style={{ color: 'var(--text-primary)' }}>{scenario.targetName}</strong> becomes unavailable, all workflows listed above lose a critical dependency and must fall back to manual processes or alternative tools immediately.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
