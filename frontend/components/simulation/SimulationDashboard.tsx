@@ -70,7 +70,7 @@ export function SimulationDashboard({ agents, dependencies, tools }: Props) {
           <Activity size={15} style={{ color: baselineColor }} />
           <div>
             <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: '0.08em' }}>BASELINE HEALTH</div>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: baselineColor, lineHeight: 1 }}>
+            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1 }}>
               {baselineHealthScore} <span style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>/100</span>
             </div>
           </div>
@@ -93,7 +93,7 @@ export function SimulationDashboard({ agents, dependencies, tools }: Props) {
               <Icon size={15} style={{ color }} />
             </div>
             <div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, color, lineHeight: 1 }}>{value}</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1 }}>{value}</div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>{label}</div>
             </div>
           </div>

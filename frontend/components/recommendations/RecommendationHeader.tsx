@@ -99,7 +99,7 @@ export default function RecommendationHeader({ output }: Props) {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem' }}>
-                <span style={{ fontSize: '2rem', fontWeight: 700, color: resolvedColor, lineHeight: 1 }}>
+                <span style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-primary)', lineHeight: 1 }}>
                   {val}
                 </span>
                 {suffix && (

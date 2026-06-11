@@ -86,7 +86,7 @@ Fuses ownership risk and dependency risk into one final risk score per agent and
 ---
 
 ### Module 04 — Recommendation Engine
-![Module 04 Output](Images/recommendations.png)
+![Module 04 Output](Images/recommendations1.png)
 
 Generates specific, prioritized, actionable recommendations based on the risk analysis.
 
@@ -106,7 +106,7 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 ---
 
 ### Module 05 — What-If Simulation Engine
-![Module 05 Output](Images/what_ifn.png)
+![Module 05 Output](Images/what_ifl.png)
 
 Simulates "what if" scenarios and shows exactly how the Organizational Health Score changes if a person leaves or an agent fails.
 

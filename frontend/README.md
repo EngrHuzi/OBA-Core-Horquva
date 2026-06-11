@@ -14,6 +14,9 @@ Four KPI cards, risk distribution chart by department, top 5 critical agents pan
 ### 02 Module 2 — Ownership Intelligence
 - **Ownership Overview** — KPI strip for coverage gaps, SPOFs, and orphaned agents.
 - **Concentration Bar** — Stacked bar mapping exposed vs covered agents per owner.
+- **Dependency Pipeline** — Full-stack chain visualization: People → Agents → AI Platforms → Workflows, with per-person load bars and SPOF flags.
+- **Human Dependency Risks** — Per-person risk scorecards showing exposed agents, unbacked workflows, undocumented ownership, and a weighted composite risk score.
+- **Organizational Relationship Map** — Expandable cross-department topology: who controls which agents, tools, and workflows; department-level single-owner alerts.
 - **Ownership List** — Detailed registry grouped by owner with specific risk badges.
 
 ### 03 Module 3 — Dependency Map
@@ -31,7 +34,7 @@ Four KPI cards, risk distribution chart by department, top 5 critical agents pan
 - **Recommendation List** — Full actionable recommendation set with effort/impact metadata.
 - **Demo Summary** — Sunrise Care finding highlights for demo walkthroughs.
 
-### 06 Module 3 — Risk Intelligence ✅ NEW
+### 06 Module 6 — Risk Intelligence
 Fuses ownership risk + dependency risk into one composite score per agent, with CRITICAL rule enforcement and Organizational Health Score computation.
 
 - **Risk Header** — SVG OHS gauge + 4 stat cards (Total Agents, Critical, High, Orphaned) in a clean 2×2 grid.
