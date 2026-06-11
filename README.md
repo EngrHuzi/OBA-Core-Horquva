@@ -67,7 +67,7 @@ Maps how agents depend on each other and simulates cascade failures.
 ---
 
 ### Module 03 — Risk Intelligence
-![Module 03 Output](Images/Risk.png)
+![Module 03 Output](Images/riskanalysis.png)
 
 Fuses ownership risk and dependency risk into one final risk score per agent and computes an overall Organizational Health Score.
 
@@ -106,7 +106,7 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 ---
 
 ### Module 05 — What-If Simulation Engine
-![Module 05 Output](Images/what_if.png)
+![Module 05 Output](Images/what_ifn.png)
 
 Simulates "what if" scenarios and shows exactly how the Organizational Health Score changes if a person leaves or an agent fails.
 

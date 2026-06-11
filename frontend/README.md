@@ -6,74 +6,80 @@ Executive-facing dashboard for the OBA (Organizational Brain Analysis) Core engi
 
 ---
 
-## What's Built (Module 1 — Executive Dashboard)
+## What's Built
 
-### 01 Organizational Snapshot
-Four KPI cards answering the executive's first question at a glance:
-- **Platform Risk Score** — 72/100 with animated progress bar
-- **Agents Found** — 15 active AI agents
-- **Orphaned Agents** — 3 agents with no owner assigned
-- **Critical Dependencies** — 5 high-impact agent connections
+### 01 Module 1 — Executive Dashboard
+Four KPI cards, risk distribution chart by department, top 5 critical agents panel, and full agent registry table with computed governance risk scores.
 
-### 02 Risk Analysis
-Full-width stacked bar chart showing **risk distribution by department** (Sales, Finance, HR, Operations, etc.) with Critical / High / Medium / Low tiers. Includes a grid background and custom legend below the chart.
-
-### 03 Recommendations (Top Risks + Priority Actions)
-Two-column split:
-- **Left** — Top 5 critical agents requiring immediate attention, with owner status
-- **Right** — Dynamically generated priority actions (assign owners, document workflows, review dependencies)
-
-### 04 Agent Summary Directory
-Complete agent registry table with 5 columns:
-- **Agent Details** — name + department
-- **Ownership** — primary + backup owner (flags orphaned and missing backup)
-- **Documentation** — verified or missing
-- **Criticality** — inherent business importance of the agent
-- **Risk** — computed governance score (mirrors OBA Core Module 03 scoring: ownership + documentation + criticality weight)
-
-### 05 Module 2 — Ownership Intelligence
+### 02 Module 2 — Ownership Intelligence
 - **Ownership Overview** — KPI strip for coverage gaps, SPOFs, and orphaned agents.
 - **Concentration Bar** — Stacked bar mapping exposed vs covered agents per owner.
-- **Ownership List** — Detailed registry of agents grouped by owner with specific risk badges.
+- **Ownership List** — Detailed registry grouped by owner with specific risk badges.
 
-### 06 Module 3 — Dependency Map
-- **Dependency KPIs** — Strip showing Total Agents, Dependencies, SPOFs Detected, and Max Cascade Risk.
-- **Dependency Flow Canvas** — React Flow node graph auto-layouted with Dagre, featuring interactive failure simulation and SPOF detection highlighting.
-- **Agent Continuity Matrix** — An executive table summarizing upstream dependencies, downstream cascading impact, and continuity risk for each agent.
+### 03 Module 3 — Dependency Map
+- **Dependency KPIs** — Total Agents, Dependencies, SPOFs Detected, Max Cascade Risk.
+- **Dependency Flow Canvas** — React Flow node graph auto-layouted with Dagre, interactive failure simulation and SPOF highlighting.
+- **Agent Continuity Matrix** — Executive table with upstream/downstream impact and continuity risk per agent.
 
-### 07 Module 4 — Continuity Intelligence (What-If Simulation)
-- **Simulation Dashboard** — Coordinates baseline vs. simulated metrics.
-- **Scenario Ranking** — Interactive list of scenarios (Person Leaves, Agent Fails) ranked by worst impact first.
-- **Impact Summary** — Visually displays before/after Health Score and a detailed log of every impacted agent with their adjusted risk levels.
+### 04 Module 4 — Continuity Intelligence (What-If Simulation)
+- **Simulation Dashboard** — Baseline vs. simulated health score metrics.
+- **Scenario Ranking** — Scenarios (Person Leaves, Agent Fails, Tool Unavailable) ranked by worst impact.
+- **Impact Summary** — Before/after Health Score delta and per-agent risk level changes.
+
+### 05 Module 5 — Recommendation Engine
+- **Top 5 Urgent** — Prioritized executive action list with urgency scoring.
+- **Recommendation List** — Full actionable recommendation set with effort/impact metadata.
+- **Demo Summary** — Sunrise Care finding highlights for demo walkthroughs.
+
+### 06 Module 3 — Risk Intelligence ✅ NEW
+Fuses ownership risk + dependency risk into one composite score per agent, with CRITICAL rule enforcement and Organizational Health Score computation.
+
+- **Risk Header** — SVG OHS gauge + 4 stat cards (Total Agents, Critical, High, Orphaned) in a clean 2×2 grid.
+- **Critical Risk Panel** — Expandable card per CRITICAL agent with rule explanation, per-factor score breakdown (+points), and downstream cascade warning.
+- **Risk Score Tables** — Tiered tables for HIGH / MEDIUM / LOW agents showing owner, backup, docs, cascade count, and composite score.
+- **Organizational Health Banner** — OHS progress bar, 4 key insight columns, and Sunrise Care key findings list.
+
+**Risk Tier Rules:**
+
+| Score | Tier |
+|---|---|
+| ≥ 70 | CRITICAL |
+| ≥ 40 | HIGH |
+| ≥ 20 | MEDIUM |
+| < 20 | LOW |
+
+**CRITICAL Hard Rule:** Agent is forced CRITICAL if it is **orphaned** OR is a **SPOF with no backup owner**, regardless of numeric score.
+
+**Sunrise Care Demo Results:** 5 CRITICAL · 6 HIGH · Org Health Score **56/100 — AT RISK**
 
 ---
 
 ## Design System
 
-- **Color palette** — near-black canvas (`#0c0c0f`) with elevated cards (`#16161c`)
-- **Risk colors** — Critical (red) / High (orange) / Medium (yellow) / Low (green), all desaturated for readability
+- **Color palette** — near-black canvas (`#0c0c0f`), elevated cards (`#16161c`), subtle borders (`#1f1f29`)
+- **Risk colors** — Critical (red) / High (orange) / Medium (yellow) / Low (green), desaturated for elegance
 - **Typography** — DM Sans via `next/font/google`; HORQUVA wordmark uses Outfit 500
-- **Animations** — staggered `fade-up` on page load, card hover lift (`translateY(-2px)`), icon scale, soft pulse on warning icons
-- **Cards** — layered box-shadow for elevation, colored 2px top-border gradient per metric type, hover glow wash
+- **Animations** — staggered `fade-up`, card hover lift (`translateY(-2px)`), soft pulse on warnings
+- **Glassmorphism tokens** — backdrop blur, layered box-shadows, inset highlights
 
 ---
 
-## Screens (Route Stubs)
+## Screens
 
-| Route | Status | Description |
+| Route | Status | Module |
 |---|---|---|
 | `/` | ✅ Built | Executive Dashboard (Module 1) |
 | `/ownership` | ✅ Built | Ownership Intelligence (Module 2) |
-| `/risk` | 🔜 Stub | Risk Intelligence |
 | `/map` | ✅ Built | Dependency Map (Module 3) |
 | `/simulation` | ✅ Built | What-If Simulation (Module 4) |
-| `/recommendations` | 🔜 Stub | Recommendations (Module 5) |
+| `/recommendations` | ✅ Built | Recommendation Engine (Module 5) |
+| `/risk` | ✅ Built | Risk Intelligence (Module 3 — Risk) |
 
 ---
 
 ## Data Source
 
-All UI is powered by `../data/sunrise_care.json` (Sunrise Care demo dataset) loaded server-side via `lib/data.ts`. No API calls — pure local data for the MVP.
+All UI powered by `../data/sunrise_care.json` loaded server-side via `lib/data.ts`. No API calls — pure local data for the MVP.
 
 ---
 
