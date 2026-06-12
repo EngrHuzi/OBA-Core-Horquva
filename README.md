@@ -1,12 +1,9 @@
 # OBA Core — AI Workforce Intelligence
 **Horquva | MVP Demo — Sunrise Care (Fictional Company)**
 
-OBA (Organizational Brain Analysis) is the intelligence engine that discovers, maps, and analyzes AI agents inside an organization — finding who owns them, how 
-they connect, what breaks if something goes wrong, and exactly what to do about it.
+OBA (Organizational Brain Analysis) is the intelligence engine that discovers, maps, and analyzes AI agents inside an organization — finding who owns them, how they connect, what breaks if something goes wrong, and exactly what to do about it.
 
-![](Images/dashboard.png)
-> 
-**"The only thing that matters: This is actually useful."** — Horquva
+> **"The only thing that matters: This is actually useful."** — Horquva
 
 ---
 
@@ -24,7 +21,7 @@ OBA Core answers all of this — automatically.
 ## Modules Implemented
 
 ### Module 01 — Ownership Intelligence
-![Module 01 Output](Images/agent_summary.png)
+![Module 01 Output](Images/module_01.png)
 
 Analyzes every AI agent to determine ownership status and risk.
 
@@ -48,7 +45,7 @@ Analyzes every AI agent to determine ownership status and risk.
 ---
 
 ### Module 02 — Dependency Intelligence
-![Module 02 Output](Images/dependency_map.png)
+![Module 02 Output](Images/Modules_2.png)
 
 Maps how agents depend on each other and simulates cascade failures.
 
@@ -67,7 +64,7 @@ Maps how agents depend on each other and simulates cascade failures.
 ---
 
 ### Module 03 — Risk Intelligence
-![Module 03 Output](Images/riskanalysis.png)
+![Module 03 Output](Images/Risk.png)
 
 Fuses ownership risk and dependency risk into one final risk score per agent and computes an overall Organizational Health Score.
 
@@ -86,7 +83,7 @@ Fuses ownership risk and dependency risk into one final risk score per agent and
 ---
 
 ### Module 04 — Recommendation Engine
-![Module 04 Output](Images/recommendations1.png)
+![Module 04 Output](Images/Modules_4.png)
 
 Generates specific, prioritized, actionable recommendations based on the risk analysis.
 
@@ -106,7 +103,7 @@ Generates specific, prioritized, actionable recommendations based on the risk an
 ---
 
 ### Module 05 — What-If Simulation Engine
-![Module 05 Output](Images/what_ifl.png)
+![Module 05 Output](Images/if_simulates_fails.png)
 
 Simulates "what if" scenarios and shows exactly how the Organizational Health Score changes if a person leaves or an agent fails.
 
@@ -131,7 +128,7 @@ Simulates "what if" scenarios and shows exactly how the Organizational Health Sc
 ---
 
 ### Module 06 — Human-Agent Dependency Map
-![Module 06 Output](Images/ai_human_mapping.png)
+![Module 06 Output](Images/Modules_6.png)
 
 Maps every person to the agents they own, identifies human single points of failure, and gives full coverage analysis across the organization.
 
@@ -154,12 +151,11 @@ Maps every person to the agents they own, identifies human single points of fail
 ---
 
 ### Module 07 — AI Tool Intelligence
-![Module 07 Output](Images/Module_07.png)
+![Module 07 Output](Images/module_07.png)
 
 Maps every AI tool in use across the organization — who owns it, how many users depend on it, which agents and workflows it powers, and what breaks if access is lost.
 
 **What it does:**
-![](Images/Module_07(1).png)
 - Scores every AI tool for risk: ChatGPT, Claude, Gemini, Microsoft Copilot, GitHub Copilot
 - Identifies tools with no backup/alternative assigned
 - Maps tool-to-agent and tool-to-workflow dependencies
@@ -178,7 +174,7 @@ Maps every AI tool in use across the organization — who owns it, how many user
 ---
 
 ### Module 08 — Workflow Intelligence
-![Module 08 Output](Images/Module_08.png)
+![Module 08 Output](Images/module_08.png)
 
 Maps every workflow as a full step-by-step chain (Human → Tool → Agent → Outcome), identifies ownership gaps, detects single-node failure points, and scores risk across all workflows.
 
@@ -200,12 +196,11 @@ Maps every workflow as a full step-by-step chain (Human → Tool → Agent → O
 ---
 
 ### Module 09 — Knowledge Risk Intelligence
-![Module 09 Output](Images/Module_09.png)
+![Module 09 Output](Images/module_09.png)
 
 Maps where critical organizational knowledge lives — which people hold it, which assets are undocumented, and exactly what the organization loses if a key person walks out.
 
 **What it does:**
-![](Images/Module_09(1).png)
 - Calculates a Knowledge Concentration Score per person (0–100%)
 - Identifies people who are sole holders of critical undocumented knowledge
 - Lists every undocumented agent, workflow, and AI tool
@@ -222,7 +217,7 @@ Maps where critical organizational knowledge lives — which people hold it, whi
 ---
 
 ### Module 10 — Organizational Memory Intelligence
-![Module 10 Output](Images/Module_10.png)
+![Module 10 Output](Images/module_10.png)
 
 Tracks the preservation status of every AI asset in the organization — agents, workflows, and tools — and calculates how much institutional knowledge would survive if key people left.
 
@@ -335,18 +330,7 @@ PORT=3000
 > **Note:** `.env` is git-ignored and must never be committed.
 
 ---
-## Frontend UI
 
-**Stack:** Next.js 16 · TypeScript · Tailwind CSS v4 · Recharts · Lucide Icons
-The `frontend/` directory contains the executive-facing dashboard that visualizes OBA Core intelligence for organizational leaders.
-### Run the Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-
-Runs on http://localhost:3001
-```
 ## Project Structure
 
 ```
@@ -378,58 +362,24 @@ backend/
     risks.js                            # GET /api/risks
     dashboard.js                        # GET /api/dashboard
 
-
-frontend/
-├── app/
-│   ├── layout.tsx                # Persistent Shell (Sidebar)
-│   ├── globals.css               # Design system, tokens, animations
-│   ├── page.tsx                  # Screen 1: Executive Dashboard 
-│   ├── ownership/page.tsx        # Screen 2: Ownership Intelligence
-│   ├── risk/page.tsx             # Screen 3: Risk Intelligence
-│   ├── map/page.tsx              # Screen 4: Dependency Map
-│   ├── simulation/page.tsx       # Screen 5: What-If Simulation
-│   └── recommendations/page.tsx  # Screen 6: Recommendations
-├── components/
-│   ├── layout/
-│   │   └── Sidebar.tsx           # Navigation sidebar with 6 routes
-│   ├── dashboard/                # Module 1
-│   │   ├── KpiStrip.tsx          
-│   │   ├── Heatmap.tsx           
-│   │   ├── RiskSplit.tsx         
-│   │   └── AgentTable.tsx        
-│   ├── ownership/                # Module 2
-│   │   ├── OwnershipOverview.tsx 
-│   │   ├── ConcentrationBar.tsx  
-│   │   └── OwnershipList.tsx     
-│   ├── map/                      # Module 3
-│   │   ├── CustomNodes.tsx       
-│   │   ├── DependencyKPIs.tsx    
-│   │   ├── FlowCanvas.tsx        
-│   │   └── DependencyTable.tsx   
-│   └── simulation/               # Module 4
-│       ├── SimulationDashboard.tsx
-│       ├── ScenarioRanking.tsx   
-│       └── ImpactSummary.tsx     
-│   ├── recommendations/          # Module 5
-│       ├── RecommendationHeader.tsx
-│       ├── Top5Urgent.tsx
-│       ├── RecommendationList.tsx
-│       └── DemoSummary.tsx
-├── lib/
-│   ├── data.ts                   # Server-side JSON loader for sunrise_care.json
-│   ├── graph.ts                  # Graph/Cascade logic for Map
-│   ├── risk.ts                   # Risk scoring utilities
-│   └── simulation.ts             # "What-If" scenario logic
-└── types/
-    └── index.ts                  # TypeScript definitions
-```
 Images/
- 
- main.py                                 # runs all 10 Python modules in sequence
+  module_01.png                         # Module 01 terminal output
+  Modules_2.png                         # Module 02 terminal output
+  Risk.png                              # Module 03 terminal output
+  Modules_4.png                         # Module 04 terminal output
+  if_simulates_fails.png                # Module 05 terminal output
+  Modules_6.png                         # Module 06 terminal output
+  Human_map_summary.png                 # Module 06 summary panel
+  module_07.png                         # Module 07 terminal output
+  module_08.png                         # Module 08 terminal output
+  module_09.png                         # Module 09 terminal output
+  module_10.png                         # Module 10 terminal output
+  WhatTAha.png                          # Full demo summary
+
+main.py                                 # runs all 10 Python modules in sequence
 pyproject.toml                          # Python project dependencies
 uv.lock                                 # locked dependency versions
 ```
-
 
 ---
 
@@ -448,7 +398,7 @@ uv.lock                                 # locked dependency versions
 
 ---
 
-## Module Engineering 
+## Module Engineering Credits
 
 | Module | Module Name | Lead Engineer |
 |--------|-------------|---------------|
