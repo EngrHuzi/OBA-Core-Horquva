@@ -19,15 +19,16 @@ router.get('/', async (req, res) => {
   const criticalDeps     = deps.data.filter(d => d.dependency_type === 'critical').length
   const criticalRecs     = recs.data.filter(r => r.priority === 'critical').length
 
+  // Risk score calculation
   const weights = { critical: 40, high: 20, medium: 10, low: 5 }
   const raw = agents.data.reduce((sum, a) => sum + (weights[a.risk] || 0), 0)
   const riskScore = Math.min(Math.round((raw / (totalAgents * 40)) * 100), 100)
 
   res.json({
-    agents:                  totalAgents,
-    orphanedAgents:          orphanedAgents,
-    riskScore:               riskScore,
-    criticalDependencies:    criticalDeps,
+    agents:               totalAgents,
+    orphanedAgents:       orphanedAgents,
+    riskScore:            riskScore,
+    criticalDependencies: criticalDeps,
     criticalRecommendations: criticalRecs
   })
 })
