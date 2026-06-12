@@ -2,8 +2,6 @@
 
 **Developed by Horquva · MVP Demo · Sunrise Care (Fictional Company)**
 
-> *"The only thing that matters: This is actually useful."* — Horquva
-
 OBA Core (Organizational Brain Analysis) is an enterprise-grade intelligence engine that automatically discovers, maps, and analyzes every AI agent operating inside an organization. It answers the three questions no organization can currently answer:
 
 - **Who owns each AI agent?**
@@ -13,6 +11,7 @@ OBA Core (Organizational Brain Analysis) is an enterprise-grade intelligence eng
 OBA Core answers all of this in seconds, with full risk scoring, cascade simulation, and prioritized action plans.
 
 ![OBA Core Executive Dashboard](Images/dashboard.png)
+> ### **"The only thing that matters: This is actually useful."** — Horquva
 
 ---
 
@@ -554,4 +553,4 @@ OBA-Core-Horquva/
 
 ---
 
-*Built by Horquva Engineering · MVP Release · 2025*
+***Built by Horquva Engineering · MVP Release · 2026***
