@@ -12,7 +12,8 @@ OBA Core answers all of this in seconds, with full risk scoring, cascade simulat
 
 ![OBA Core Executive Dashboard](Images/dashboard.png)
 > [!IMPORTANT]
-> <span style="font-weight: 900; font-size: 20px; color: #000000;">"The only thing that matters: This is actually useful." — Horquva</span>
+> # **"The only thing that matters: This is actually useful." — Horquva**
+
 
 
 
