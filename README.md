@@ -11,7 +11,10 @@ OBA Core (Organizational Brain Analysis) is an enterprise-grade intelligence eng
 OBA Core answers all of this in seconds, with full risk scoring, cascade simulation, and prioritized action plans.
 
 ![OBA Core Executive Dashboard](Images/dashboard.png)
-> **"The only thing that matters: This is actually useful." — Horquva**
+> [!IMPORTANT]
+> <span style="font-weight: 900; font-size: 20px; color: #000000;">"The only thing that matters: This is actually useful." — Horquva</span>
+
+
 
 
 ---
