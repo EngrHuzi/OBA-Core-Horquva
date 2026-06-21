@@ -31,6 +31,8 @@ app.use('/api/knowledge/intelligence', require('./routes/knowledge/intelligence'
 app.use('/api/knowledge/impact',       require('./routes/knowledge/impact'))
 app.use('/api/knowledge/gaps',         require('./routes/knowledge/gaps'))
 app.use('/api/memory', require('./routes/memory/memory'))
+app.use('/api/governance/intelligence', require('./routes/governance/intelligence'))
+app.use('/api/accountability/intelligence', require('./routes/accountability/intelligence'))
 console.log("4. Routes loaded")
 
 const PORT = process.env.PORT || 3000
