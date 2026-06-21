@@ -345,5 +345,95 @@
         {"step": 4, "actor": "human", "name": "Mike",       "action": "Validates analysis and distributes report"}
       ]
     }
+  ],
+  "governance_policies": [
+    {
+      "id": "pol_001",
+      "name": "AI Agent Ownership Policy",
+      "domain": "operational",
+      "status": "active",
+      "applies_to": ["agent_001", "agent_002", "agent_003", "agent_004", "agent_005", "agent_006", "agent_007", "agent_008", "agent_009", "agent_010", "agent_011", "agent_012", "agent_013", "agent_014", "agent_015"],
+      "created_by": "Robert",
+      "last_reviewed": "2026-03-15",
+      "review_cycle_days": 90,
+      "compliance_required": true
+    },
+    {
+      "id": "pol_002",
+      "name": "Data Protection Policy",
+      "domain": "security",
+      "status": "active",
+      "applies_to": ["agent_005", "agent_009", "agent_014"],
+      "created_by": "Lisa",
+      "last_reviewed": "2026-01-20",
+      "review_cycle_days": 60,
+      "compliance_required": true
+    },
+    {
+      "id": "pol_003",
+      "name": "AI Tool Usage Policy",
+      "domain": "operational",
+      "status": "active",
+      "applies_to": ["tool_001", "tool_002", "tool_003", "tool_004", "tool_005"],
+      "created_by": "David",
+      "last_reviewed": "2026-04-01",
+      "review_cycle_days": 90,
+      "compliance_required": false
+    },
+    {
+      "id": "pol_004",
+      "name": "Compliance Monitoring Policy",
+      "domain": "compliance",
+      "status": "active",
+      "applies_to": ["agent_010", "wf_004"],
+      "created_by": "Lisa",
+      "last_reviewed": "2026-05-10",
+      "review_cycle_days": 30,
+      "compliance_required": true
+    },
+    {
+      "id": "pol_005",
+      "name": "Workflow Documentation Policy",
+      "domain": "operational",
+      "status": "expired",
+      "applies_to": ["wf_001", "wf_002", "wf_003", "wf_005"],
+      "created_by": "Robert",
+      "last_reviewed": "2025-12-01",
+      "review_cycle_days": 90,
+      "compliance_required": false
+    },
+    {
+      "id": "pol_006",
+      "name": "Financial Controls Policy",
+      "domain": "financial",
+      "status": "active",
+      "applies_to": ["agent_005", "agent_009"],
+      "created_by": "Lisa",
+      "last_reviewed": "2026-02-28",
+      "review_cycle_days": 60,
+      "compliance_required": true
+    },
+    {
+      "id": "pol_007",
+      "name": "Incident Response Policy",
+      "domain": "security",
+      "status": "draft",
+      "applies_to": ["agent_014", "wf_006"],
+      "created_by": "David",
+      "last_reviewed": "2026-06-01",
+      "review_cycle_days": 30,
+      "compliance_required": true
+    },
+    {
+      "id": "pol_008",
+      "name": "Employee Data Handling Policy",
+      "domain": "data",
+      "status": "active",
+      "applies_to": ["agent_008", "agent_009", "wf_003"],
+      "created_by": "Lisa",
+      "last_reviewed": "2026-03-01",
+      "review_cycle_days": 90,
+      "compliance_required": true
+    }
   ]
 }

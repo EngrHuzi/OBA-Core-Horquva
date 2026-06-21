@@ -174,7 +174,7 @@ def display_recommendation_report(
 
     console.print(table)
 
-    console.print("\n[bold red]⚡ TOP 5 MOST URGENT ACTIONS:[/bold red]\n")
+    console.print("\n[bold red]!! TOP 5 MOST URGENT ACTIONS:[/bold red]\n")
     for i, rec in enumerate(recommendations[:5], 1):
         color = risk_colors.get(rec.risk_level, "white")
         console.print(f"  [bold]{i}.[/bold] [{color}][{rec.risk_level}][/{color}] {rec.action}")
@@ -193,11 +193,11 @@ def display_recommendation_report(
 
     console.print(Panel(
         f"[bold]15 agents analyzed[/bold] across {company}\n"
-        f"[bold red]Robert owns 5 agents — ZERO backups → CRITICAL[/bold red]\n"
+        f"[bold red]Robert owns 5 agents - ZERO backups -> CRITICAL[/bold red]\n"
         f"[bold red]{spof_count} Single Points of Failure identified[/bold red]\n"
         f"[bold red]{critical_count} agents at CRITICAL risk[/bold red]\n"
         f"[bold yellow]{high_count} agents at HIGH risk[/bold yellow]\n"
-        f"[bold]If Robert leaves → 5 agents immediately unmanaged[/bold]\n\n"
+        f"[bold]If Robert leaves -> 5 agents immediately unmanaged[/bold]\n\n"
         f"[bold]Organizational Health Score:[/bold] [{h_color}]{health_score}/100 — {h_label}[/{h_color}]\n\n"
         f"[bold cyan]{len(recommendations)} actionable recommendations generated[/bold cyan]",
         title="[bold]DEMO SUMMARY — What Taha Sees[/bold]",

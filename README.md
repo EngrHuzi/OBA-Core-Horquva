@@ -24,7 +24,16 @@ OBA Core answers all of this in seconds, with full risk scoring, cascade simulat
 
 ## The Problem We Solve
 
+<<<<<<< HEAD
 Organizations are deploying AI agents faster than they can govern them. The result is invisible risk:
+=======
+Modern organizations are deploying AI agents faster than they can manage them. Nobody knows:
+- Who owns which agent?
+- What breaks if one agent fails?
+- How severe is the risk if a key person leaves?
+- Is governance working across the organization?
+- Who is accountable for each decision?
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 
 - Agents running with no owner, no documentation, no backup
 - One person quietly controlling 5+ critical agents — with zero coverage
@@ -35,6 +44,7 @@ Organizations are deploying AI agents faster than they can govern them. The resu
 
 ---
 
+<<<<<<< HEAD
 ## What Was Built
 
 OBA Core is a full-stack intelligence platform with three layers:
@@ -48,6 +58,24 @@ OBA Core is a full-stack intelligence platform with three layers:
 ---
 
 ## Intelligence Modules (10 Total)
+=======
+## Architecture
+
+```
+Phase 1 — Intelligence Modules (M01-M08)
+  Ownership → Dependency → Risk → Recommendations → What-If → Human-Map → AI Tools → Workflows
+
+Phase 2 — Platform Foundation
+  Data Models → Intelligence Pipeline → Storage Layer → Governance Data Framework
+
+Phase 3 — Governance & Accountability Pillar
+  Governance Intelligence (M19) → Accountability Intelligence (M20)
+```
+
+---
+
+## Phase 1 — Intelligence Modules
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 
 ### Module 01 — Ownership Intelligence
 ![Module 01 Output](Images/agent_summary.png)
@@ -224,6 +252,7 @@ Maps every business workflow step by step — Human → Tool → Agent → Outco
 
 ---
 
+<<<<<<< HEAD
 ### Module 09 — Knowledge Risk Intelligence
 ![Module 09 Output](Images/Module_09.png)
 
@@ -275,6 +304,112 @@ Tracks the institutional memory preservation status of every AI asset and calcul
 ---
 
 ## Demo Results Summary
+=======
+## Phase 2 — Platform Foundation
+
+### Intelligence Pipeline
+
+The cross-pillar intelligence layer that connects all data sources into a unified graph.
+
+**What it does:**
+- Builds entity cache from agents, tools, workflows, and policies
+- Resolves relationships between entities (who owns what, what applies to what)
+- Provides filtered views: get entities by type, find uncovered entities, get policies per entity
+- Powers both Governance and Accountability intelligence modules
+
+### Data Models
+
+Core data structures for the Governance & Accountability pillar:
+
+- **Entity** — any asset in the organization (agent, tool, workflow, policy, person)
+- **GovernancePolicy** — policies that govern entities (domain, status, review cycle, compliance)
+- **AccountabilityLink** — RACI-style accountability chain per entity (responsible, accountable, consulted, informed, decision authority)
+- **GovernanceGap** — detected governance weaknesses with severity and details
+- **PillarResult** — aggregated health metrics per intelligence pillar
+
+### Storage Layer
+
+Persists intelligence analysis results as JSON with metadata timestamps.
+
+**What it does:**
+- Saves/loads per-pillar analysis results (governance, accountability)
+- Maintains an intelligence index with pillar metadata
+- Auto-creates directory structure on first run
+- Tracks when each pillar was last updated
+
+### Governance Data Framework
+
+The analytical engine behind governance scoring and gap detection.
+
+**What it does:**
+- Scores each entity for governance health (0–100) based on: ownership, documentation, policy coverage, enforcement status
+- Builds a governance heatmap across all entities and departments
+- Detects governance gaps: no owner, no policy, expired policies, undocumented entities
+- Calculates overall governance score for the organization
+
+---
+
+## Phase 3 — Governance & Accountability Pillar
+
+### Module 19 — Governance Intelligence
+
+Answers: **"Who owns what? Is governance working? Where are governance weaknesses?"**
+
+**What it does:**
+- Calculates a Governance Score per entity (0–100) based on ownership, documentation, and policy coverage
+- Classifies entities into: `HEALTHY / WARNING / AT RISK / CRITICAL`
+- Builds a **Governance Heatmap by Department** — average score, entity count, critical gaps
+- Performs **Governance Risk Detection** — identifies top issues with severity and remediation steps
+
+**Scoring factors:**
+- No owner → -40 points
+- Not documented → -20 points
+- No governance policy → -25 points
+- Expired policy → -15 points
+- No enforced policy on critical entity → -10 points
+- High-criticality entity with zero coverage → -15 points
+
+**Key findings on Sunrise Care demo:**
+- Overall Governance Score: **70/100 — WARNING**
+- 3 entities at CRITICAL governance level (Inventory Agent, Data Backup Agent, Lead Generation Workflow)
+- 2 entities at AT RISK level
+- 13 of 27 entities are undocumented
+- IT department has worst governance (avg score 35/100)
+- Legal and Marketing departments score best (85+ / 100)
+
+---
+
+### Module 20 — Accountability Intelligence
+
+Answers: **"Who approved this? Who is responsible? Who is accountable?"**
+
+**What it does:**
+- Builds an **Accountability Map** for every entity using RACI-style analysis (Responsible, Accountable, Consulted, Informed)
+- Scores each entity's accountability structure (0–100)
+- Identifies separation-of-duties violations (same person responsible AND accountable)
+- Builds **Responsibility Chains** — who carries what burden across the organization
+- Maps **Decision Ownership** — who has final authority for each entity
+
+**Scoring factors:**
+- No responsible person → -30 points
+- No accountable person → -25 points
+- Same person responsible and accountable → -10 points
+- No consultation defined → -10 points
+- No informed parties → -5 points
+- No decision authority → -15 points
+- Single-person approval chain → -10 points
+
+**Key findings on Sunrise Care demo:**
+- Overall Accountability Score: **76/100 — WARNING**
+- 7 entities have the same person as both responsible and accountable (no separation of duties)
+- Robert carries the heaviest burden: responsible AND accountable for 5 agents
+- No entities have consultation or informed parties defined
+- All decision authority is concentrated at the individual owner level
+
+---
+
+## Demo Results
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 
 ![Demo Summary](Images/WhatTAha.png)
 
@@ -291,14 +426,23 @@ Tracks the institutional memory preservation status of every AI asset and calcul
 | Institutional Memory Health Score | **54/100 — AT RISK** |
 | Actionable Recommendations Generated | 12 |
 | Total Coverage Gaps | 9 |
+<<<<<<< HEAD
 | Total Undocumented Assets | 13 |
 | Total Knowledge Gaps | 15 |
 | Total Monthly AI Tool Spend | $1,444 |
+=======
+| **Governance Score** | **70/100 — WARNING** |
+| **Accountability Score** | **76/100 — WARNING** |
+| **Governance Entities Analyzed** | **27** |
+| **Accountability Links Mapped** | **13** |
+| **Governance Policy Gaps** | **1 entity with no policy coverage** |
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 
 ---
 
 ## Demo Dataset
 
+<<<<<<< HEAD
 **File:** `data/sunrise_care.json`
 
 A purpose-built fictional company dataset engineered to stress-test all 10 modules simultaneously.
@@ -311,6 +455,18 @@ A purpose-built fictional company dataset engineered to stress-test all 10 modul
 - 3 primary owners: Robert (5 agents), Sarah (3 agents), Lisa (2 agents)
 - 2 fully orphaned agents: Inventory Agent, Data Backup Agent
 - Designed so Robert's departure triggers maximum cascade damage across the org
+=======
+`data/sunrise_care.json` — fictional company (Sunrise Care) with:
+- 120 employees
+- 15 AI agents across Sales, Finance, HR, Operations, Support, Marketing
+- 14 dependency relationships
+- 3 primary owners: Robert, Sarah, Lisa
+- 2 fully unowned (orphaned) agents
+- 5 AI tools (ChatGPT, Claude, Gemini, GitHub Copilot, Microsoft Copilot)
+- 7 workflows with full step-by-step chains
+- 8 governance policies across security, compliance, operational, financial, and data domains
+- Designed to stress-test: Robert owns 5 agents, no backups, 3 critical dependencies
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 
 ---
 
@@ -324,7 +480,11 @@ Runs all 10 modules in sequence and prints full analysis to the terminal.
 # Install dependencies (requires uv)
 uv sync
 
+<<<<<<< HEAD
 # Run all 10 modules
+=======
+# Run all 10 modules (Phase 1 + Phase 3)
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 uv run main.py
 ```
 
@@ -410,6 +570,7 @@ Also accessible on your local network at **`http://<your-ip>:3001`**
 ## Project Structure
 
 ```
+<<<<<<< HEAD
 OBA-Core-Horquva/
 │
 ├── data/
@@ -518,6 +679,53 @@ OBA-Core-Horquva/
 ├── main.py                                    # Runs all 10 Python modules in sequence
 ├── pyproject.toml                             # Python project dependencies
 └── uv.lock                                    # Locked Python dependency versions
+=======
+data/
+  sunrise_care.json                  # agent + dependency + governance dataset (Python CLI)
+
+modules/
+  __init__.py
+  ownership_intelligence.py          # Module 01 — Ownership Analysis
+  dependency_intelligence.py         # Module 02 — Dependency Mapping
+  risk_intelligence.py               # Module 03 — Risk Scoring
+  recommendation_engine.py           # Module 04 — Action Recommendations
+  whatif_simulation.py               # Module 05 — What-If Simulation Engine
+  human_agent_map.py                 # Module 06 — Human-Agent Dependency Map
+  ai_tool_intelligence.py            # Module 07 — AI Tool Intelligence
+  workflow_intelligence.py           # Module 08 — Workflow Intelligence
+  data_models.py                     # Phase 2 — Core data models
+  storage_layer.py                   # Phase 2 — Intelligence storage layer
+  intelligence_pipeline.py           # Phase 2 — Cross-pillar intelligence pipeline
+  governance_data_framework.py       # Phase 2 — Governance scoring & gap framework
+  governance_intelligence.py         # Module 19 — Governance Intelligence
+  accountability_intelligence.py     # Module 20 — Accountability Intelligence
+
+backend/
+  index.js                           # Express server entry point
+  supabase.js                        # Supabase client
+  package.json                       # Node.js dependencies
+  .env.example                       # Environment variable template
+  routes/
+    agents.js                        # GET /api/agents
+    ownership.js                     # GET /api/ownership
+    dependencies.js                  # GET /api/dependencies
+    risks.js                         # GET /api/risks
+    dashboard.js                     # GET /api/dashboard
+
+Images/
+  module_01.png                      # Module 01 terminal output
+  Modules_2.png                      # Module 02 terminal output
+  Risk.png                           # Module 03 terminal output
+  Modules_4.png                      # Module 04 terminal output
+  if_simulates_fails.png             # Module 05 terminal output
+  Modules_6.png                      # Module 06 terminal output
+  Human_map_summary.png              # Module 06 summary panel
+  WhatTAha.png                       # Full demo summary
+
+main.py                              # runs all 10 Python modules in sequence
+pyproject.toml                       # Python project dependencies
+uv.lock                              # locked dependency versions
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))
 ```
 
 ---
@@ -529,6 +737,7 @@ OBA-Core-Horquva/
 | Intelligence Engine | Core Logic | Python 3.13 |
 | Intelligence Engine | Package Manager | uv |
 | Intelligence Engine | Terminal Output | rich |
+<<<<<<< HEAD
 | Intelligence Engine | Data Format | JSON |
 | Backend | Server Framework | Node.js + Express 5 |
 | Backend | Database | Supabase (PostgreSQL) |
@@ -561,3 +770,11 @@ OBA-Core-Horquva/
 ---
 
 ***Built by Horquva Engineering · MVP Release · 2026***
+=======
+| Intelligence Engine | Dataset | JSON |
+| Intelligence Engine | Storage | JSON files with metadata |
+| Backend API | Server | Node.js + Express |
+| Backend API | Database | Supabase (PostgreSQL) |
+| Backend API | Auth/Client | @supabase/supabase-js |
+| Both | Version Control | GitHub |
+>>>>>>> a8a001c (feat: add Phase 2 (Platform Foundation) and Phase 3 (Governance & Accountability Intelligence))

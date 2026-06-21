@@ -158,7 +158,7 @@ def display_risk_report(results: list[RiskResult], health_score: int, company: s
     if critical:
         console.print("\n[bold red]CRITICAL Risk Breakdown:[/bold red]")
         for r in critical:
-            console.print(f"\n  [bold red]► {r.agent_name}[/bold red] (Score: {r.combined_risk_score})")
+            console.print(f"\n  [bold red]>> {r.agent_name}[/bold red] (Score: {r.combined_risk_score})")
             for factor in r.risk_factors:
                 console.print(f"    [dim]•[/dim] {factor}")
 

@@ -89,7 +89,7 @@ def simulate_person_leaves(
     owned_count = len(affected_agents)
     summary = (
         f"If {person_name} leaves: {owned_count} agent(s) become immediately unmanaged. "
-        f"Health Score drops from {health_before} → {health_after} "
+        f"Health Score drops from {health_before} -> {health_after} "
         f"({abs(health_delta)} point{'s' if abs(health_delta) != 1 else ''} {'drop' if health_delta < 0 else 'gain'})."
     )
 
@@ -161,7 +161,7 @@ def simulate_agent_fails(
 
     summary = (
         f"If {agent_name} fails: {len(cascade_names)} downstream agent(s) are disrupted. "
-        f"Health Score drops from {health_before} → {health_after} "
+        f"Health Score drops from {health_before} -> {health_after} "
         f"({abs(health_delta)} point{'s' if abs(health_delta) != 1 else ''} {'drop' if health_delta < 0 else 'gain'})."
     )
 
@@ -233,7 +233,7 @@ def display_whatif_report(scenarios: list[SimulationScenario], health_before: in
         table.add_column("Agents Orphaned", justify="center", min_width=16)
         table.add_column("Health Before", justify="center", min_width=14)
         table.add_column("Health After", justify="center", min_width=13)
-        table.add_column("Δ Impact", justify="center", min_width=10)
+        table.add_column("Delta Impact", justify="center", min_width=10)
         table.add_column("Status", justify="center", min_width=14)
 
         for s in person_scenarios:
@@ -256,11 +256,11 @@ def display_whatif_report(scenarios: list[SimulationScenario], health_before: in
 
         # Detailed breakdown for worst person scenario
         worst = person_scenarios[0]
-        console.print(f"\n[bold red]⚠  Worst Case — If {worst.subject} Leaves:[/bold red]")
+        console.print(f"\n[bold red]!! Worst Case — If {worst.subject} Leaves:[/bold red]")
         for change in worst.risk_changes:
             before_color = {"CRITICAL": "bold red", "HIGH": "bold yellow", "MEDIUM": "yellow", "LOW": "green"}.get(change["before_level"], "white")
             after_color = {"CRITICAL": "bold red", "HIGH": "bold yellow", "MEDIUM": "yellow", "LOW": "green"}.get(change["after_level"], "white")
-            arrow = " → "
+            arrow = " -> "
             console.print(
                 f"  [white]{change['agent']}[/white]: "
                 f"[{before_color}]{change['before_level']}[/{before_color}] (score {change['before_score']})"
@@ -279,7 +279,7 @@ def display_whatif_report(scenarios: list[SimulationScenario], health_before: in
         table2.add_column("Cascade Victims", justify="center", min_width=15)
         table2.add_column("Health Before", justify="center", min_width=14)
         table2.add_column("Health After", justify="center", min_width=13)
-        table2.add_column("Δ Impact", justify="center", min_width=10)
+        table2.add_column("Delta Impact", justify="center", min_width=10)
 
         for s in agent_scenarios:
             delta = s.health_delta
