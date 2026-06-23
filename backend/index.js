@@ -33,6 +33,13 @@ app.use('/api/knowledge/gaps',         require('./routes/knowledge/gaps'))
 app.use('/api/memory', require('./routes/memory/memory'))
 app.use('/api/governance/intelligence', require('./routes/governance/intelligence'))
 app.use('/api/accountability/intelligence', require('./routes/accountability/intelligence'))
+app.use('/api/ontology/intelligence', require('./routes/ontology/intelligence'))
+app.use('/api/relationship/intelligence', require('./routes/relationship/intelligence'))
+app.use('/api/context/intelligence', require('./routes/context/intelligence'))
+app.use('/api/avatar/intelligence', require('./routes/avatar/intelligence'))
+app.use('/api/briefing/intelligence', require('./routes/briefing/intelligence'))
+app.use('/api/universal-dep/intelligence', require('./routes/universal-dep/intelligence'))
+app.use('/api/network/intelligence', require('./routes/network/intelligence'))
 console.log("4. Routes loaded")
 
 const PORT = process.env.PORT || 3000

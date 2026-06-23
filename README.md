@@ -30,19 +30,89 @@ Organizations are deploying AI agents faster than they can govern them. The resu
 
 ## What Was Built
 
-OBA Core is a full-stack intelligence platform with three layers:
+OBA Core is a full-stack intelligence platform with **five architectural layers**:
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| Intelligence Engine | Python · uv · rich | 12 analytical modules that process org data |
-| Backend API | Node.js · Express · Supabase | REST API serving all intelligence data |
+| Intelligence Engine | Python · uv · rich | 27 analytical modules across 5 phases |
+| Backend API | Node.js · Express · Supabase | 30+ REST API endpoints serving all intelligence data |
 | Executive Dashboard | Next.js 16 · TypeScript · Tailwind · Recharts | Interactive visualization for leadership |
 
 ---
 
-## Intelligence Modules (12 Total)
+## Architecture Overview
 
-### Module 01 — Ownership Intelligence
+The Organizational Brain is built on **four foundational layers** that modules generate signals into:
+
+```
+Data Fabric → Ontology Layer → Knowledge Graph → Context Layer
+                                                      ↓
+                                          Modules Generate Signals
+                                                      ↓
+                                    Intelligence Engines → Reasoning
+                                                      ↓
+                                            Truth Layer → Executive Cognition
+                                                      ↓
+                                          One Organizational Truth
+```
+
+Your modules no longer make decisions. They generate signals.
+
+---
+
+## Architecture Layers
+
+### Ontology Layer
+
+The formal vocabulary of the Organizational Brain — every entity, role, and concept is defined here before any module can reference it.
+
+**Entity types defined:** `Human · Team · AI Agent · System · Workflow · Knowledge`
+
+**What it does:**
+- Defines 6 entity types with required/optional properties and constraints
+- Defines 12 relationship types with source/target type validation
+- Registers 43 entities and 115 relationships from the Sunrise Care dataset
+- Validates all entities conform to their type definitions
+- Provides the single source of truth for what exists in the organization
+
+### Relationship Layer
+
+Maps every connection between organizational entities — the graph that the Brain navigates when reasoning about the organization.
+
+**What it does:**
+- Builds a navigable graph from all entities and relationships
+- Performs BFS/DFS graph traversal and shortest path analysis
+- Detects cycles, isolated nodes, and bottleneck nodes
+- Calculates degree centrality, betweenness, and clustering metrics
+- Identifies the strongest connections and cross-type edges
+
+### Context Intelligence Layer
+
+Provides real-time organizational context so that every Executive Avatar interaction is situationally aware and accurate.
+
+**What it does:**
+- Builds entity context packages with risk indicators and governance status
+- Builds person context packages with ownership trees and coverage gaps
+- Generates organization-level context with health summary and executive brief
+- Maps all context packages with relevance scores for instant retrieval
+
+### Voice Agent Context Layer
+
+The semantic foundation that lets Voice Agents understand organizational intent, entity references, and conversational context.
+
+**What it does:**
+- Generates voice entity models with aliases and semantic descriptions
+- Defines 8 conversational intents (risk, ownership, dependency, health, simulation, recommendation, governance, accountability)
+- Builds entity resolution map for natural language queries
+- Provides relationship narratives and risk narratives for voice responses
+
+---
+
+## Intelligence Modules (27 Total)
+
+### Phase 1 — Core Intelligence (Modules 01-10)
+
+#### Module 01 — Ownership Intelligence
 ![Module 01 Output](Images/agent_summary.png)
 
 Analyzes every AI agent across the organization and scores ownership risk.
@@ -72,7 +142,7 @@ Analyzes every AI agent across the organization and scores ownership risk.
 
 ---
 
-### Module 02 — Dependency Intelligence
+#### Module 02 — Dependency Intelligence
 ![Module 02 Output](Images/dependency_map.png)
 
 Builds a full dependency graph of all AI agents and maps cascade failure paths.
@@ -91,7 +161,7 @@ Builds a full dependency graph of all AI agents and maps cascade failure paths.
 
 ---
 
-### Module 03 — Risk Intelligence
+#### Module 03 — Risk Intelligence
 ![Module 03 Output](Images/riskanalysis.png)
 
 Fuses ownership risk and dependency data into a single composite risk score per agent, then computes the Organizational Health Score.
@@ -109,7 +179,7 @@ Fuses ownership risk and dependency data into a single composite risk score per 
 
 ---
 
-### Module 04 — Recommendation Engine
+#### Module 04 — Recommendation Engine
 ![Module 04 Output](Images/recommendations1.png)
 
 Generates specific, named, prioritized actions based on every risk finding — not generic advice.
@@ -129,7 +199,7 @@ Generates specific, named, prioritized actions based on every risk finding — n
 
 ---
 
-### Module 05 — What-If Simulation Engine
+#### Module 05 — What-If Simulation Engine
 ![Module 05 Output](Images/what_ifl.png)
 
 Simulates every possible disruption scenario and calculates its exact impact on organizational health before it happens.
@@ -153,7 +223,7 @@ Simulates every possible disruption scenario and calculates its exact impact on 
 
 ---
 
-### Module 06 — Human-Agent Dependency Map
+#### Module 06 — Human-Agent Dependency Map
 ![Module 06 Output](Images/ai_human_mapping.png)
 
 Maps every person in the organization to the agents they control and scores human-level coverage risk.
@@ -174,7 +244,7 @@ Maps every person in the organization to the agents they control and scores huma
 
 ---
 
-### Module 07 — AI Tool Intelligence
+#### Module 07 — AI Tool Intelligence
 ![Module 07 Output](Images/Module_07.png)
 
 Audits every AI tool in use across the organization — usage, risk, dependencies, and financial exposure.
@@ -198,7 +268,7 @@ Audits every AI tool in use across the organization — usage, risk, dependencie
 
 ---
 
-### Module 08 — Workflow Intelligence
+#### Module 08 — Workflow Intelligence
 ![Module 08 Output](Images/Module_08.png)
 
 Maps every business workflow step by step — Human -> Tool -> Agent -> Outcome — and scores failure risk at each node.
@@ -217,7 +287,7 @@ Maps every business workflow step by step — Human -> Tool -> Agent -> Outcome 
 
 ---
 
-### Module 09 — Knowledge Risk Intelligence
+#### Module 09 — Knowledge Risk Intelligence
 ![Module 09 Output](Images/Module_09.png)
 
 Maps where critical organizational knowledge is stored — in people's heads — and calculates what disappears if they leave.
@@ -240,7 +310,7 @@ Maps where critical organizational knowledge is stored — in people's heads —
 
 ---
 
-### Module 10 — Organizational Memory Intelligence
+#### Module 10 — Organizational Memory Intelligence
 ![Module 10 Output](Images/Module_10.png)
 
 Tracks the institutional memory preservation status of every AI asset and calculates how much organizational knowledge would survive a major personnel disruption.
@@ -267,9 +337,9 @@ Tracks the institutional memory preservation status of every AI asset and calcul
 
 ---
 
-## Phase 2 — Platform Foundation
+### Phase 2 — Platform Foundation
 
-### Intelligence Pipeline
+#### Intelligence Pipeline
 
 The cross-pillar intelligence layer that connects all data sources into a unified graph.
 
@@ -279,7 +349,7 @@ The cross-pillar intelligence layer that connects all data sources into a unifie
 - Provides filtered views: get entities by type, find uncovered entities, get policies per entity
 - Powers both Governance and Accountability intelligence modules
 
-### Data Models
+#### Data Models
 
 Core data structures for the Governance & Accountability pillar:
 
@@ -289,7 +359,7 @@ Core data structures for the Governance & Accountability pillar:
 - **GovernanceGap** — detected governance weaknesses with severity and details
 - **PillarResult** — aggregated health metrics per intelligence pillar
 
-### Storage Layer
+#### Storage Layer
 
 Persists intelligence analysis results as JSON with metadata timestamps.
 
@@ -299,7 +369,7 @@ Persists intelligence analysis results as JSON with metadata timestamps.
 - Auto-creates directory structure on first run
 - Tracks when each pillar was last updated
 
-### Governance Data Framework
+#### Governance Data Framework
 
 The analytical engine behind governance scoring and gap detection.
 
@@ -311,9 +381,9 @@ The analytical engine behind governance scoring and gap detection.
 
 ---
 
-## Phase 3 — Governance & Accountability Pillar
+### Phase 3 — Governance & Accountability Pillar
 
-### Module 19 — Governance Intelligence
+#### Module 19 — Governance Intelligence
 
 Answers: **"Who owns what? Is governance working? Where are governance weaknesses?"**
 
@@ -341,7 +411,7 @@ Answers: **"Who owns what? Is governance working? Where are governance weaknesse
 
 ---
 
-### Module 20 — Accountability Intelligence
+#### Module 20 — Accountability Intelligence
 
 Answers: **"Who approved this? Who is responsible? Who is accountable?"**
 
@@ -370,6 +440,171 @@ Answers: **"Who approved this? Who is responsible? Who is accountable?"**
 
 ---
 
+### Phase 4 — Executive Avatar & Voice Intelligence
+
+#### Module 21 — Executive Avatar Intelligence
+
+Provides real-time context for executive interactions — processes queries, detects intent, resolves entities, generates contextual responses.
+
+**What it does:**
+- Detects user intent from natural language queries (8 intent types)
+- Resolves entity references from voice models and aliases
+- Generates contextual responses using organization, entity, and person context
+- Processes sample queries with confidence scoring
+- Tracks intent distribution and session metrics
+
+**Sunrise Care findings:**
+- 8 sample queries processed with 0.55 average confidence
+- 6 distinct intents detected: risk, ownership, dependency, health, recommendation, general
+- Entity resolution successfully identifies named agents, people, and tools
+
+---
+
+#### Module 22 — Voice Intelligence Engine
+
+Processes natural language voice commands and converts them into actionable intelligence responses.
+
+**What it does:**
+- Parses voice commands against 8 intent patterns
+- Extracts entity references from natural language
+- Generates voice-appropriate responses with confidence scoring
+- Supports commands: query risk, query owner, health check, dependencies, simulate, recommend, list assets, compare entities
+- Tracks command processing metrics and entity resolution rates
+
+**Sunrise Care findings:**
+- 10 voice commands processed with 0.73 average confidence
+- Entity resolution rate: 80%
+- All 8 intent types successfully detected
+
+---
+
+#### Module 23 — Executive Briefing Intelligence
+
+Generates automated executive briefings with risk sections, key metrics, and prioritized actions.
+
+**What it does:**
+- Generates executive summary with health trajectory
+- Produces briefing sections: Asset Risk, Documentation Gaps, Human SPOFs, Governance Coverage
+- Calculates key metrics: health score, critical assets, orphaned, undocumented, human SPOFs
+- Generates prioritized recommended actions (URGENT / HIGH / MEDIUM)
+- Provides before/after health trajectory analysis
+
+**Sunrise Care findings:**
+- Executive Summary: "Health Score 35/100 — CRITICAL. 2 orphaned assets require immediate attention."
+- 4 prioritized actions generated
+- 3 briefing sections with CRITICAL/HIGH priority findings
+
+---
+
+#### Module 27 — Executive Context Intelligence
+
+Pre-computes context packages for every entity, person, and organization-level summary for instant retrieval by the Executive Avatar.
+
+**What it does:**
+- Builds entity context packages with owner, criticality, documentation, governance status, risk indicators
+- Builds person context packages with owned agents, workflows, coverage gaps, risk level
+- Builds organization summary with type counts, critical assets, orphaned, undocumented
+- Assigns relevance scores for priority-based context delivery
+- Provides context coverage metrics
+
+**Sunrise Care findings:**
+- 43 context packages generated
+- Entity contexts, person contexts, and organization summary pre-computed
+- Context coverage: 100%
+
+---
+
+### Phase 5 — Organizational Scale Intelligence
+
+#### Module 28 — Universal Dependency Graph
+
+Maps ALL organizational dependencies into a single navigable graph — the complete dependency surface of the organization. Evolves Module 02.
+
+**What it does:**
+- Maps every entity in the organizational graph with upstream/downstream counts
+- Detects Single Points of Failure (SPOFs) across all entity types
+- Calculates cascade depth — how deep failure chains extend
+- Identifies bottleneck nodes with highest SPOF scores
+- Traces full cascade chains from each SPOF
+
+**Sunrise Care findings:**
+- 43 nodes, 115 edges mapped
+- 12 SPOFs identified (including humans and policies)
+- Max cascade depth: 5 levels
+- Top SPOF: AI Agent Ownership Policy (15 downstream dependencies)
+
+---
+
+#### Module 29 — Organizational Relationship Intelligence
+
+Understands the nature and health of every relationship in the organization — formal and informal, human and system. Evolves Module 01.
+
+**What it does:**
+- Scores health for each relationship type (owns, depends_on, uses, governs, etc.)
+- Identifies weak connections (degree <= 1) and strong connections (degree >= 7)
+- Calculates overall relationship health percentage
+- Maps relationship type distribution and risk distribution
+
+**Sunrise Care findings:**
+- 115 total relationships across 12 types
+- Weak connections: entities with minimal graph connectivity
+- Strong connections: AI Agent Ownership Policy (degree 15), Payroll Agent (degree 10)
+
+---
+
+#### Module 31 — Organizational Ecosystem Intelligence
+
+Maps the complete organizational ecosystem — every actor, system, and external entity and how they interact. Evolves Module 07.
+
+**What it does:**
+- Maps every entity as an ecosystem actor with connections, departments, tools, and agents
+- Calculates department coverage and tool adoption metrics
+- Scores ecosystem health based on connectivity
+- Identifies high-influence and peripheral actors
+
+**Sunrise Care findings:**
+- 43 actors mapped across the ecosystem
+- Department coverage: Sales (5), HR (3), Finance (3), IT (2)
+- Tool adoption: Microsoft Copilot (8), ChatGPT (7), Claude (6)
+
+---
+
+#### Module 34 — Hidden Dependency Intelligence
+
+Surfaces unseen dependencies — the organizational risks no one has mapped yet because they aren't visible in any single module. Evolves Module 02.
+
+**What it does:**
+- Detects shared-owner hidden dependencies (agents owned by same person)
+- Detects shared-tool hidden dependencies (agents relying on same tool)
+- Scores hidden dependencies by risk level (HIGH / MEDIUM)
+- Maps detection method and description for each hidden dependency
+
+**Sunrise Care findings:**
+- 11 hidden dependencies detected
+- 10 HIGH risk (shared owner), 1 MEDIUM risk (shared tool)
+- Top hidden dep: Robert's 5 agents share ownership with no direct dependencies between them
+
+---
+
+#### Module 35 — Organizational Network Intelligence
+
+Understands network behavior across the entire organization — how influence, information, and decisions actually travel. Evolves Module 08.
+
+**What it does:**
+- Calculates degree centrality, betweenness centrality, and closeness centrality for every node
+- Identifies network roles: hub, bridge, connector, peripheral
+- Detects network clusters and measures cohesion
+- Identifies top influencers and isolated nodes
+- Calculates network density and centralization metrics
+
+**Sunrise Care findings:**
+- 43 nodes with avg degree 5.35
+- Top influencers: AI Agent Ownership Policy, Lisa, Mike, Robert, Sarah
+- Network clusters: 1 connected component
+- Isolated nodes: Emma, James, Nina (0 relationships)
+
+---
+
 ## Demo Results Summary
 
 ![Demo Summary](Images/WhatTAha.png)
@@ -395,6 +630,11 @@ Answers: **"Who approved this? Who is responsible? Who is accountable?"**
 | **Governance Entities Analyzed** | **27** |
 | **Accountability Links Mapped** | **13** |
 | **Governance Policy Gaps** | **1 entity with no policy coverage** |
+| **Ontology Entities** | **43** |
+| **Ontology Relationships** | **115** |
+| **Hidden Dependencies** | **11** |
+| **Network Influencers** | **5** |
+| **Context Packages** | **43** |
 
 ---
 
@@ -402,7 +642,7 @@ Answers: **"Who approved this? Who is responsible? Who is accountable?"**
 
 **File:** `data/sunrise_care.json`
 
-A purpose-built fictional company dataset engineered to stress-test all 12 modules simultaneously.
+A purpose-built fictional company dataset engineered to stress-test all 27 modules simultaneously.
 
 - 120 employees across 8 departments
 - 15 AI agents: Sales, Finance, HR, Operations, Support, Marketing
@@ -420,13 +660,13 @@ A purpose-built fictional company dataset engineered to stress-test all 12 modul
 
 ### 1 — Python Intelligence Engine
 
-Runs all 12 modules in sequence and prints full analysis to the terminal.
+Runs all 27 modules in sequence and prints full analysis to the terminal.
 
 ```bash
 # Install dependencies (requires uv)
 uv sync
 
-# Run all 12 modules
+# Run all 27 modules
 uv run main.py
 ```
 
@@ -473,6 +713,21 @@ Server starts on **`http://localhost:3000`**
 | `GET /api/simulations/workflow-disruption` | 05 | Health Score impact when a workflow breaks |
 | `GET /api/governance/intelligence` | 19 | Governance score, heatmap, risk detection |
 | `GET /api/accountability/intelligence` | 20 | Accountability maps, RACI chains, decision ownership |
+| `GET /api/ontology/intelligence` | Ontology | Entity types, relationship types, full ontology |
+| `GET /api/ontology/entities` | Ontology | All entities with type filtering |
+| `GET /api/ontology/entities/:id` | Ontology | Single entity with relationships |
+| `GET /api/ontology/relationships` | Ontology | All relationships with type filtering |
+| `GET /api/ontology/types` | Ontology | All type definitions |
+| `GET /api/relationship/intelligence` | Relationship | Graph traversal, bottlenecks, centrality |
+| `GET /api/relationship/paths` | Relationship | Find paths between entities |
+| `GET /api/context/intelligence` | Context | Entity/person/org context packages |
+| `GET /api/context/voice` | Voice | Voice entity models and intents |
+| `POST /api/avatar/intelligence/query` | M21 | Process natural language query |
+| `POST /api/avatar/intelligence/batch` | M21 | Process batch queries |
+| `GET /api/briefing/intelligence` | M23 | Executive briefing generation |
+| `GET /api/briefing/intelligence/entity/:id` | M23 | Entity-specific briefing |
+| `GET /api/universal-dep/intelligence` | M28 | Universal dependency graph |
+| `GET /api/network/intelligence` | M35 | Network intelligence analysis |
 
 #### Environment Setup
 
@@ -536,7 +791,19 @@ OBA-Core-Horquva/
 │   ├── intelligence_pipeline.py               # Phase 2 — Cross-pillar intelligence pipeline
 │   ├── governance_data_framework.py           # Phase 2 — Governance scoring & gap framework
 │   ├── governance_intelligence.py             # Module 19 — Governance Intelligence
-│   └── accountability_intelligence.py         # Module 20 — Accountability Intelligence
+│   ├── accountability_intelligence.py         # Module 20 — Accountability Intelligence
+│   ├── ontology_layer.py                      # Ontology Layer — Entity & relationship definitions
+│   ├── relationship_layer.py                  # Relationship Layer — Graph traversal & centrality
+│   ├── context_intelligence.py                # Context Intelligence + Voice Agent Context
+│   ├── executive_avatar_intelligence.py       # Module 21 — Executive Avatar Intelligence
+│   ├── voice_intelligence.py                  # Module 22 — Voice Intelligence Engine
+│   ├── executive_briefing_intelligence.py     # Module 23 — Executive Briefing Intelligence
+│   ├── executive_context_intelligence.py      # Module 27 — Executive Context Intelligence
+│   ├── universal_dependency_graph.py          # Module 28 — Universal Dependency Graph
+│   ├── org_relationship_intelligence.py       # Module 29 — Org Relationship Intelligence
+│   ├── ecosystem_intelligence.py              # Module 31 — Ecosystem Intelligence
+│   ├── hidden_dependency_intelligence.py      # Module 34 — Hidden Dependency Intelligence
+│   └── network_intelligence.py                # Module 35 — Network Intelligence
 │
 ├── backend/
 │   ├── index.js                               # Express server — all routes registered here
@@ -571,8 +838,22 @@ OBA-Core-Horquva/
 │       │   └── memory.js                      # /api/memory
 │       ├── governance/
 │       │   └── intelligence.js                # /api/governance/intelligence
-│       └── accountability/
-│           └── intelligence.js                # /api/accountability/intelligence
+│       ├── accountability/
+│       │   └── intelligence.js                # /api/accountability/intelligence
+│       ├── ontology/
+│       │   └── intelligence.js                # /api/ontology/intelligence
+│       ├── relationship/
+│       │   └── intelligence.js                # /api/relationship/intelligence
+│       ├── context/
+│       │   └── intelligence.js                # /api/context/intelligence
+│       ├── avatar/
+│       │   └── intelligence.js                # /api/avatar/intelligence
+│       ├── briefing/
+│       │   └── intelligence.js                # /api/briefing/intelligence
+│       ├── universal-dep/
+│       │   └── intelligence.js                # /api/universal-dep/intelligence
+│       └── network/
+│           └── intelligence.js                # /api/network/intelligence
 │
 ├── frontend/
 │   ├── app/
@@ -629,7 +910,8 @@ OBA-Core-Horquva/
 │       └── index.ts                           # TypeScript type definitions
 │
 ├── Images/                                    # All module output screenshots
-├── main.py                                    # Runs all 12 Python modules in sequence
+├── DECK_2_Huzaifa.pptx                        # Architecture deck — Ontology & Phase 4/5 spec
+├── main.py                                    # Runs all 27 Python modules in sequence
 ├── pyproject.toml                             # Python project dependencies
 └── uv.lock                                    # Locked Python dependency versions
 ```
@@ -660,21 +942,34 @@ OBA-Core-Horquva/
 
 ## Module Engineering
 
-| Module | Name | Lead Engineer |
-|--------|------|---------------|
-| Module 01 | Ownership Intelligence | Huzaifa |
-| Module 02 | Dependency Intelligence | Huzaifa |
-| Module 03 | Risk Intelligence | Huzaifa |
-| Module 04 | Recommendation Engine | Kamran |
-| Module 05 | What-If Simulation Engine | Kamran |
-| Module 06 | Human-Agent Dependency Map | Kamran |
-| Module 07 | AI Tool Intelligence | Huzaifa |
-| Module 08 | Workflow Intelligence | Huzaifa |
-| Module 09 | Knowledge Risk Intelligence | Kamran |
-| Module 10 | Organizational Memory Intelligence | Kamran |
-| Module 19 | Governance Intelligence | Huzaifa |
-| Module 20 | Accountability Intelligence | Huzaifa |
+| Module | Name | Phase | Lead Engineer |
+|--------|------|-------|---------------|
+| Module 01 | Ownership Intelligence | Phase 1 | Huzaifa |
+| Module 02 | Dependency Intelligence | Phase 1 | Huzaifa |
+| Module 03 | Risk Intelligence | Phase 1 | Huzaifa |
+| Module 04 | Recommendation Engine | Phase 1 | Kamran |
+| Module 05 | What-If Simulation Engine | Phase 1 | Kamran |
+| Module 06 | Human-Agent Dependency Map | Phase 1 | Kamran |
+| Module 07 | AI Tool Intelligence | Phase 1 | Huzaifa |
+| Module 08 | Workflow Intelligence | Phase 1 | Huzaifa |
+| Module 09 | Knowledge Risk Intelligence | Phase 1 | Kamran |
+| Module 10 | Organizational Memory Intelligence | Phase 1 | Kamran |
+| Module 19 | Governance Intelligence | Phase 3 | Huzaifa |
+| Module 20 | Accountability Intelligence | Phase 3 | Huzaifa |
+| Module 21 | Executive Avatar Intelligence | Phase 4 | Huzaifa |
+| Module 22 | Voice Intelligence Engine | Phase 4 | Huzaifa |
+| Module 23 | Executive Briefing Intelligence | Phase 4 | Huzaifa |
+| Module 27 | Executive Context Intelligence | Phase 4 | Huzaifa |
+| Module 28 | Universal Dependency Graph | Phase 5 | Huzaifa |
+| Module 29 | Organizational Relationship Intelligence | Phase 5 | Huzaifa |
+| Module 31 | Organizational Ecosystem Intelligence | Phase 5 | Huzaifa |
+| Module 34 | Hidden Dependency Intelligence | Phase 5 | Huzaifa |
+| Module 35 | Organizational Network Intelligence | Phase 5 | Huzaifa |
+| Ontology Layer | Entity & Relationship Definitions | Architecture | Huzaifa |
+| Relationship Layer | Graph Traversal & Centrality | Architecture | Huzaifa |
+| Context Intelligence | Entity/Person/Org Context | Architecture | Huzaifa |
+| Voice Agent Context | Voice Models & Intents | Architecture | Huzaifa |
 
 ---
 
-***Built by Horquva Engineering · MVP Release · 2026***
+***Built by Horquva Engineering · Full Stack Release · 2026***
