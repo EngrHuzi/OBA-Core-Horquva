@@ -40,6 +40,7 @@ app.use('/api/avatar/intelligence', require('./routes/avatar/intelligence'))
 app.use('/api/briefing/intelligence', require('./routes/briefing/intelligence'))
 app.use('/api/universal-dep/intelligence', require('./routes/universal-dep/intelligence'))
 app.use('/api/network/intelligence', require('./routes/network/intelligence'))
+app.use('/api/brain', require('./routes/brain'))
 console.log("4. Routes loaded")
 
 const PORT = process.env.PORT || 3000

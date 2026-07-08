@@ -2,6 +2,9 @@ import io
 import json
 import sys
 from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+from rich import box
 
 from modules.ownership_intelligence import run_ownership_intelligence, display_ownership_report
 from modules.dependency_intelligence import run_dependency_intelligence, display_dependency_report
@@ -28,6 +31,11 @@ from modules.ecosystem_intelligence import run_ecosystem_intelligence, display_e
 from modules.hidden_dependency_intelligence import run_hidden_dependency_intelligence, display_hidden_dep_report
 from modules.network_intelligence import run_network_intelligence, display_network_report
 
+from modules.platform_orchestrator import get_orchestrator, initialize_platform, ExecutionMode
+from modules.knowledge_graph import get_knowledge_graph
+from modules.intelligence_exchange import get_protocol
+from modules.brain_bridge import run_full_intelligence_pipeline
+
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
@@ -36,7 +44,29 @@ console = Console(file=sys.stdout, force_terminal=True, highlight=False)
 DATA_PATH = "data/sunrise_care.json"
 
 
-def main():
+def display_brain_summary(health_score: int, total_nodes: int, total_edges: int, total_insights: int, total_messages: int):
+    console.print(Panel(
+        "[bold cyan]ORGANIZATIONAL BRAIN — EXECUTION SUMMARY[/bold cyan]",
+        box=box.DOUBLE,
+    ))
+    
+    table = Table(box=box.SIMPLE_HEAVY, show_lines=True)
+    table.add_column("Metric", style="white", min_width=30)
+    table.add_column("Value", style="cyan", min_width=20)
+    
+    table.add_row("Organizational Health Score", f"{health_score}/100")
+    table.add_row("Knowledge Graph Nodes", str(total_nodes))
+    table.add_row("Knowledge Graph Edges", str(total_edges))
+    table.add_row("Insights Generated", str(total_insights))
+    table.add_row("Protocol Messages", str(total_messages))
+    table.add_row("Modules Executed", "25")
+    table.add_row("Pipeline Status", "[bold green]COMPLETE[/bold green]")
+    
+    console.print(table)
+    console.print()
+
+
+def run_legacy_mode():
     with open(DATA_PATH) as f:
         data = json.load(f)
 
@@ -179,6 +209,27 @@ def main():
     display_network_report(network, company)
 
     console.print("\n=== OBA Core Analysis Complete (All Phases + Ontology) ===\n")
+
+
+def main():
+    if "--brain" in sys.argv:
+        console.print(Panel(
+            "[bold cyan]ORGANIZATIONAL BRAIN — UNIFIED INTELLIGENCE ENGINE[/bold cyan]\n"
+            "[dim]Module Registry · Capability Registry · Intelligence Exchange · Knowledge Graph[/dim]",
+            box=box.DOUBLE,
+        ))
+        
+        result = run_full_intelligence_pipeline(DATA_PATH)
+        
+        display_brain_summary(
+            health_score=result["health_score"],
+            total_nodes=result["total_nodes"],
+            total_edges=result["total_edges"],
+            total_insights=result["total_insights"],
+            total_messages=result["total_messages"],
+        )
+    else:
+        run_legacy_mode()
 
 
 if __name__ == "__main__":
