@@ -30,12 +30,13 @@ Organizations are deploying AI agents faster than they can govern them. The resu
 
 ## What Was Built
 
-OBA Core is a full-stack intelligence platform with **five architectural layers**:
+OBA Core is a full-stack intelligence platform with **six architectural layers**:
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| Intelligence Engine | Python · uv · rich | 27 analytical modules across 5 phases |
-| Backend API | Node.js · Express · Supabase | 30+ REST API endpoints serving all intelligence data |
+| Organizational Brain | Python · Knowledge Graph · Message Bus | Unified intelligence infrastructure with graph-based reasoning |
+| Intelligence Engine | Python · uv · rich | 33 analytical modules across 5 phases |
+| Backend API | Node.js · Express · Supabase | 40+ REST API endpoints serving all intelligence data |
 | Executive Dashboard | Next.js 16 · TypeScript · Tailwind · Recharts | Interactive visualization for leadership |
 
 ---
@@ -57,6 +58,45 @@ Data Fabric → Ontology Layer → Knowledge Graph → Context Layer
 ```
 
 Your modules no longer make decisions. They generate signals.
+
+---
+
+## Organizational Brain Infrastructure
+
+The Organizational Brain is the unified intelligence infrastructure that connects all 33 modules into a single reasoning system. It transforms isolated analytical modules into a coherent intelligence graph.
+
+**What it does:**
+- Builds a **Unified Knowledge Graph** from all module outputs — every entity, risk, recommendation, and insight as a node with typed edges
+- Runs an **Intelligence Exchange Protocol** — modules emit typed signals (RISK_DETECTED, DEPENDENCY_FOUND, CASCADE_RISK) that other modules can subscribe to and react
+- Maintains a **Capability Registry** — every module registers its input/output data types, enabling automatic data routing between modules
+- Tracks module metadata in a **Module Registry** — status, execution history, dependencies, and versioning for all 33 modules
+- Connects module outputs via the **Brain Bridge** — maps each module's analysis results into the knowledge graph, creating cross-module insights
+- Orchestrates execution via the **Platform Orchestrator** — supports sequential, parallel, and dependency-ordered execution modes
+
+**Key components:**
+
+| Component | Purpose |
+|-----------|---------|
+| Unified Knowledge Graph | Central graph storing all entities, insights, and relationships |
+| Intelligence Exchange Protocol | Message bus for inter-module communication with typed signals |
+| Capability Registry | Registers module inputs/outputs for automatic data routing |
+| Module Registry | Tracks all 33 modules: status, dependencies, execution history |
+| Brain Bridge | Maps module outputs into the knowledge graph |
+| Platform Orchestrator | Manages module execution order and pipeline orchestration |
+
+**Brain API Endpoints:**
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/brain/intelligence` | Knowledge graph summary with node/edge/insight counts |
+| `GET /api/brain/registry` | Module registry with all 33 module metadata |
+| `GET /api/brain/graph/nodes` | All graph nodes (filterable by type) |
+| `GET /api/brain/graph/edges` | All graph edges (filterable by type) |
+| `GET /api/brain/graph/insights` | All insights (filterable by severity) |
+| `GET /api/brain/graph/centrality` | Top central nodes in the knowledge graph |
+| `GET /api/brain/graph/path` | Shortest path between any two nodes |
+| `GET /api/brain/summary` | Combined brain + registry summary |
+| `POST /api/brain/run` | Execute the full intelligence pipeline |
 
 ---
 
@@ -108,7 +148,7 @@ The semantic foundation that lets Voice Agents understand organizational intent,
 
 ---
 
-## Intelligence Modules (27 Total)
+## Intelligence Modules (33 Total)
 
 ### Phase 1 — Core Intelligence (Modules 01-10)
 
@@ -642,7 +682,7 @@ Understands network behavior across the entire organization — how influence, i
 
 **File:** `data/sunrise_care.json`
 
-A purpose-built fictional company dataset engineered to stress-test all 27 modules simultaneously.
+A purpose-built fictional company dataset engineered to stress-test all 33 modules simultaneously.
 
 - 120 employees across 8 departments
 - 15 AI agents: Sales, Finance, HR, Operations, Support, Marketing
@@ -660,14 +700,17 @@ A purpose-built fictional company dataset engineered to stress-test all 27 modul
 
 ### 1 — Python Intelligence Engine
 
-Runs all 27 modules in sequence and prints full analysis to the terminal.
+Runs all 33 modules in sequence and prints full analysis to the terminal.
 
 ```bash
 # Install dependencies (requires uv)
 uv sync
 
-# Run all 27 modules
+# Run all 33 modules
 uv run main.py
+
+# Run with Organizational Brain (knowledge graph + orchestration)
+uv run main.py --brain
 ```
 
 > This project uses [uv](https://github.com/astral-sh/uv) as the Python package manager.
@@ -728,6 +771,15 @@ Server starts on **`http://localhost:3000`**
 | `GET /api/briefing/intelligence/entity/:id` | M23 | Entity-specific briefing |
 | `GET /api/universal-dep/intelligence` | M28 | Universal dependency graph |
 | `GET /api/network/intelligence` | M35 | Network intelligence analysis |
+| `GET /api/brain/intelligence` | Brain | Knowledge graph summary with node/edge/insight counts |
+| `GET /api/brain/registry` | Brain | Module registry with all 33 module metadata |
+| `GET /api/brain/graph/nodes` | Brain | All graph nodes (filterable by type) |
+| `GET /api/brain/graph/edges` | Brain | All graph edges (filterable by type) |
+| `GET /api/brain/graph/insights` | Brain | All insights (filterable by severity) |
+| `GET /api/brain/graph/centrality` | Brain | Top central nodes in the knowledge graph |
+| `GET /api/brain/graph/path` | Brain | Shortest path between any two nodes |
+| `GET /api/brain/summary` | Brain | Combined brain + registry summary |
+| `POST /api/brain/run` | Brain | Execute the full intelligence pipeline |
 
 #### Environment Setup
 
@@ -803,7 +855,13 @@ OBA-Core-Horquva/
 │   ├── org_relationship_intelligence.py       # Module 29 — Org Relationship Intelligence
 │   ├── ecosystem_intelligence.py              # Module 31 — Ecosystem Intelligence
 │   ├── hidden_dependency_intelligence.py      # Module 34 — Hidden Dependency Intelligence
-│   └── network_intelligence.py                # Module 35 — Network Intelligence
+│   ├── network_intelligence.py                # Module 35 — Network Intelligence
+│   ├── knowledge_graph.py                     # Organizational Brain — Unified Knowledge Graph
+│   ├── intelligence_exchange.py               # Organizational Brain — Message Bus & Signal Protocol
+│   ├── capability_registry.py                 # Organizational Brain — Module Capability Registry
+│   ├── module_registry.py                     # Organizational Brain — Module Metadata Registry
+│   ├── platform_orchestrator.py               # Organizational Brain — Pipeline Orchestrator
+│   └── brain_bridge.py                        # Organizational Brain — Module-to-Graph Bridge
 │
 ├── backend/
 │   ├── index.js                               # Express server — all routes registered here
@@ -852,8 +910,9 @@ OBA-Core-Horquva/
 │       │   └── intelligence.js                # /api/briefing/intelligence
 │       ├── universal-dep/
 │       │   └── intelligence.js                # /api/universal-dep/intelligence
-│       └── network/
-│           └── intelligence.js                # /api/network/intelligence
+│       ├── network/
+│       │   └── intelligence.js                # /api/network/intelligence
+│       └── brain.js                           # /api/brain/* — Knowledge graph & registry
 │
 ├── frontend/
 │   ├── app/
@@ -911,7 +970,7 @@ OBA-Core-Horquva/
 │
 ├── Images/                                    # All module output screenshots
 ├── DECK_2_Huzaifa.pptx                        # Architecture deck — Ontology & Phase 4/5 spec
-├── main.py                                    # Runs all 27 Python modules in sequence
+├── main.py                                    # Runs all 33 Python modules in sequence
 ├── pyproject.toml                             # Python project dependencies
 └── uv.lock                                    # Locked Python dependency versions
 ```
@@ -922,6 +981,9 @@ OBA-Core-Horquva/
 
 | Layer | Component | Technology |
 |-------|-----------|-----------|
+| Organizational Brain | Knowledge Graph | In-memory graph with node/edge types |
+| Organizational Brain | Message Bus | Typed signal protocol with priority queues |
+| Organizational Brain | Orchestration | Dependency-ordered pipeline execution |
 | Intelligence Engine | Core Logic | Python 3.13 |
 | Intelligence Engine | Package Manager | uv |
 | Intelligence Engine | Terminal Output | rich |
@@ -965,6 +1027,12 @@ OBA-Core-Horquva/
 | Module 31 | Organizational Ecosystem Intelligence | Phase 5 | Huzaifa |
 | Module 34 | Hidden Dependency Intelligence | Phase 5 | Huzaifa |
 | Module 35 | Organizational Network Intelligence | Phase 5 | Huzaifa |
+| Knowledge Graph | Unified Knowledge Graph | Brain Infrastructure | Huzaifa |
+| Intelligence Exchange | Message Bus & Signal Protocol | Brain Infrastructure | Huzaifa |
+| Capability Registry | Module Capability Registry | Brain Infrastructure | Huzaifa |
+| Module Registry | Module Metadata Registry | Brain Infrastructure | Huzaifa |
+| Platform Orchestrator | Pipeline Orchestrator | Brain Infrastructure | Huzaifa |
+| Brain Bridge | Module-to-Graph Bridge | Brain Infrastructure | Huzaifa |
 | Ontology Layer | Entity & Relationship Definitions | Architecture | Huzaifa |
 | Relationship Layer | Graph Traversal & Centrality | Architecture | Huzaifa |
 | Context Intelligence | Entity/Person/Org Context | Architecture | Huzaifa |
